@@ -7,7 +7,7 @@
     "prettier --write"
   ],
   "*.{jsx,tsx,ts}": [
-    "npm run lint",
+    "npm run lint:fix",
     "prettier --write"
   ]
 }
