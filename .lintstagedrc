@@ -3,11 +3,11 @@
     "prettier --write"
   ],
   "*.css": [
-    "prettier --write",
-    "npm run stylelint"
+    "npm run stylelint:fix",
+    "prettier --write"
   ],
   "*.{jsx,tsx,ts}": [
-    "prettier --write",
-    "npm run lint"
+    "npm run lint",
+    "prettier --write"
   ]
- }
+}

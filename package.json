@@ -9,7 +9,7 @@
     "prepare": "husky install",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "stylelint": "stylelint \"./**/*.css\" --fix",
+    "stylelint:fix": "stylelint src/**/*.css --fix",
     "format": "prettier --write ./**/*.{js,ts,css,jsx,tsx}"
   },
   "dependencies": {
