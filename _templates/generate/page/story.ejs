@@ -1,0 +1,15 @@
+---
+to: src/stories/pages<%= path %>.stories.tsx
+---
+// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
+import { Story, Meta } from '@storybook/react/types-6-0'
+import <%= h.changeCase.pascal(name) %>Page, { <%= h.changeCase.pascal(name) %>PageProps } from '@pages<%= path %>'
+
+export default {
+	title: 'Pages/<%= h.changeCase.pascal(name) %>',
+	component: <%= h.changeCase.pascal(name) %>Page,
+} as Meta
+
+const Template: Story<<%= h.changeCase.pascal(name) %>PageProps> = (args) => <<%= h.changeCase.pascal(name) %>Page {...args} />
+
+export const Default = Template.bind({})

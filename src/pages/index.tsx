@@ -7,7 +7,7 @@ import Layout from '@widgets/layout'
 import s from './index.module.css'
 import Link from 'next/link'
 
-const Home: NextPageWithLayout = () => {
+const HomePage: NextPageWithLayout = () => {
 	return (
 		<>
 			<NextSeo
@@ -77,8 +77,8 @@ const Home: NextPageWithLayout = () => {
 	)
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
+HomePage.getLayout = function getLayout(page: ReactElement) {
 	return <Layout>{page}</Layout>
 }
 
-export default Home
+export default HomePage
