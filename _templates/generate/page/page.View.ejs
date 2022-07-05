@@ -1,0 +1,38 @@
+---
+to: "<%= `src/pages${path}.tsx` %>"
+---
+import type { ReactElement } from 'react'
+import { NextSeo } from 'next-seo'
+import cn from 'classnames'
+import type { NextPageWithLayout } from '@pages/_app'
+import Layout from '@widgets/layout'
+import s from './index.module.css'
+
+export interface <%= h.changeCase.pascal(name) %>PageProps {
+
+}
+
+const <%= h.changeCase.pascal(name) %>Page: NextPageWithLayout<<%= h.changeCase.pascal(name) %>PageProps> = () => {
+	return (
+    <>
+      <NextSeo
+        title='<%=h.changeCase.lowerCase(name)%> page'
+        description='you are on the <%=h.changeCase.lowerCase(name)%> page'
+        openGraph={{
+          title: '<%=h.changeCase.lowerCase(name)%> page' ,
+          description: 'you are on the <%=h.changeCase.lowerCase(name)%> page',
+        }}
+      />
+
+      <div className={s.component}>
+        <%= h.changeCase.pascal(name) %> Page
+      </div>
+    </>
+	)
+}
+
+<%= h.changeCase.pascal(name) %>Page.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}
+
+export default <%= h.changeCase.pascal(name) %>Page

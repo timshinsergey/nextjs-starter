@@ -7,14 +7,17 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky install",
+    "add:component": "hygen generate component",
+    "add:page": "hygen generate page",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "stylelint:fix": "stylelint src/**/*.css --fix",
-    "format": "prettier --write ./**/*.{js,ts,css,jsx,tsx}"
+    "format": "prettier --write src/**/*.{js,ts,css,jsx,tsx}"
   },
   "dependencies": {
     "classnames": "^2.3.1",
     "next": "12.2.0",
+    "next-seo": "^5.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -28,6 +31,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-tailwindcss": "^3.6.0",
     "husky": "^8.0.1",
+    "hygen": "^6.2.7",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
