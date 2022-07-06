@@ -1,12 +1,12 @@
 {
-  "*.{js,json,md,html}": [
+  "src/*.{js,json,md,html}": [
     "prettier --write"
   ],
-  "*.css": [
+  "src/*.css": [
     "npm run stylelint:fix",
     "prettier --write"
   ],
-  "*.{jsx,tsx,ts}": [
+  "src/*.{jsx,tsx,ts}": [
     "npm run lint",
     "prettier --write"
   ]
