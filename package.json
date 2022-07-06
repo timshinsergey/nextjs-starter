@@ -10,7 +10,6 @@
     "add:component": "hygen generate component",
     "add:page": "hygen generate page",
     "lint": "next lint",
-    "lint:fix": "next lint --fix --file src/**/*.{js,ts,jsx,tsx}",
     "stylelint:fix": "stylelint src/**/*.css --fix",
     "format": "prettier --write src/**/*.{js,ts,css,jsx,tsx}",
     "storybook": "start-storybook -p 6006 -s ./public",
