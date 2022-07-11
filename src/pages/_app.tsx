@@ -3,7 +3,7 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
-import SEO from '@app/next-seo.config'
+import SEO from '@app/next-seo.config.json'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode
