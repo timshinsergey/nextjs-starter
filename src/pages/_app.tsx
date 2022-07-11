@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
+import SEO from '@app/next-seo.config'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode
@@ -18,18 +19,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
 	return (
 		<>
-			<DefaultSeo
-				title={'Starter nextjs projects'}
-				description={'This is awesome starter nextjs projects'}
-				openGraph={{
-					locale: 'ru_RU',
-					title: 'Starter nextjs projects',
-					description: 'This is awesome starter nextjs projects',
-					site_name: 'starter next',
-					type: 'website',
-					url: 'example.com',
-				}}
-			/>
+			<DefaultSeo {...SEO}/>
 			{getLayout(<Component {...pageProps} />)}
 		</>
 	)

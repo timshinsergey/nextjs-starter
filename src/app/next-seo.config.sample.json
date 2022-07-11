@@ -1,0 +1,32 @@
+{
+  "title": "Name page | John Doe",
+  "description": "Site description",
+  "cannonical": "https://example.com/",
+  "openGraph": {
+    "type": "website",
+    "locale": "ru_RU",
+    "url": "https://example.com/",
+    "site_name": "Site Name",
+    "title": "Name page | John Doe",
+    "description": "Site description",
+    "images": [
+      {
+        "url": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "width": 1200,
+        "height": 630,
+        "alt": "John Doe's Site's Opengraph Image"
+      }
+    ],
+    "profile": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "username": "johndoe",
+      "gender": "male"
+    }
+  },
+  "twitter": {
+    "handle": "@Johndoe2020",
+    "site": "@Johndoe2020",
+    "cardType": "summary_large_image"
+  }
+}
