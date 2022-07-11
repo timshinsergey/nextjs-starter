@@ -6,7 +6,7 @@ export interface IconProps {
 	section?: string
 }
 
-const Icon: FC<IconProps> = ({ name, className, section = 'icons' }): JSX.Element => {
+const Icon: FC<IconProps> = ({ name, className, section = 'common' }): JSX.Element => {
 	return (
 		<svg className={className}>
 			<use xlinkHref={`/sprites/${section}.svg#${name.toLocaleLowerCase()}`} />

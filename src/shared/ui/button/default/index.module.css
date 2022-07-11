@@ -1,9 +1,2 @@
-.button {
-	min-height: 44px;
-}
-
-@media screen(md) {
-	.button {
-		min-height: 48px;
-	}
+.root {
 }

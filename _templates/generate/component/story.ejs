@@ -3,7 +3,7 @@ to: src/stories/<%= folder %>/<%= h.changeCase.pascal(name) %>.stories.tsx
 ---
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
-import <%= h.changeCase.pascal(name) %>, { <%= h.changeCase.pascal(name) %>Props } from '@<%= folder %>/<%= h.changeCase.lower(name) %>'
+import <%= h.changeCase.pascal(name) %>, { <%= h.changeCase.pascal(name) %>Props } from '@<%= folder %>/<%= h.inflection.dasherize(name) %>'
 
 export default {
 	title: '<%= h.changeCase.pascal(folder) %>/<%= h.changeCase.pascal(name) %>',

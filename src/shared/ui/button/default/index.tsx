@@ -1,58 +1,49 @@
-import {
-  ComponentProps,
-  ElementType,
-  forwardRef,
-  ReactElement,
-  Ref,
-} from 'react'
+import { ComponentProps, ElementType, forwardRef, ReactElement, Ref } from 'react'
 import cn from 'classnames'
 
 import s from './index.module.css'
 
 export type DefaultButtonOwnProps<E extends ElementType = ElementType> = {
-  el?: E
-  variant?: 'link' | 'base' | 'primary' | 'secondary' | 'outlined'
-  className?: string
+	el?: E
+	variant?: 'link' | 'base' | 'primary' | 'secondary' | 'outlined'
+	size?: 'small' | 'medium' | 'large'
+	className?: string
 }
 
-export type DefaultButtonProps<E extends ElementType> =
-  DefaultButtonOwnProps<E> &
-    Omit<ComponentProps<E>, keyof DefaultButtonOwnProps>
+export type DefaultButtonProps<E extends ElementType> = DefaultButtonOwnProps<E> &
+	Omit<ComponentProps<E>, keyof DefaultButtonOwnProps>
 
 const defaultElement = 'button'
 
 const DefaultButton: <E extends ElementType = typeof defaultElement>(
-  props: DefaultButtonProps<E>
+	props: DefaultButtonProps<E>
 ) => ReactElement | null = forwardRef(function DefaultButton(
-  { el, variant, className, ...props }: DefaultButtonOwnProps,
-  ref: Ref<Element>
+	{ el, variant, className, size = 'small', ...props }: DefaultButtonOwnProps,
+	ref: Ref<Element>
 ) {
-  const Element = el || defaultElement
-  return (
-    <Element
-      ref={ref}
-      className={cn(
-        s.button,
-        'inline-flex relative justify-center items-center rounded-lg p-2 disabled:opacity-50',
-        {
-          ['text-xl md:text-3xl']:
-            variant === 'primary' ||
-            variant === 'secondary' ||
-            variant === 'outlined',
-          ['text-sm underline hover:bg-primary hover:bg-opacity-5 hover:no-underline md:text-lg']:
-            variant === 'base',
-          ['bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary']:
-            variant === 'primary',
-          ['bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50']:
-            variant === 'secondary',
-          ['bg-transparent font-bold text-primary border border-primary hover:bg-primary hover:bg-opacity-5']:
-            variant === 'outlined',
-        },
-        className
-      )}
-      {...props}
-    />
-  )
+	const Element = el || defaultElement
+	return (
+		<Element
+			ref={ref}
+			className={cn(
+				s.root,
+				'grid grid-flow-col relative justify-center items-center font-bold gap-2',
+				{
+					['bg-primary text-white hover:bg-primary-hover active:bg-primary-active focus:bg-primary-active disabled:bg-sort-50 disabled:text-sort-100']:
+						variant === 'primary',
+					['bg-sort-300 text-black-400 disabled:bg-sort-50 disabled:text-sort-100']:
+						variant === 'secondary',
+					['bg-white border-sort-50 border text-black disabled:bg-sort-50 disabled:text-sort-100']:
+						variant === 'outlined',
+					['text-xs h-8 px-2 rounded lg:text-sm lg:h-11 lg:px-3 lg:rounded-md']: size === 'small',
+					['text-sm h-11 px-5 rounded-md']: size === 'medium',
+					['text-md h-14 px-9 rounded-md']: size === 'large',
+				},
+				className
+			)}
+			{...props}
+		/>
+	)
 })
 
 export default DefaultButton

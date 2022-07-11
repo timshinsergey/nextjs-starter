@@ -8,6 +8,6 @@ module.exports = [
 		type: 'select',
 		name: 'folder',
 		message: 'Select component folder...',
-		choices: ['entities', 'features', 'shared', 'widgets'],
+		choices: ['entities', 'features', 'shared/ui', 'widgets'],
 	},
 ]
