@@ -30,7 +30,6 @@ const Typography: FC<TypographyProps> = ({
 					['text-xl leading-5 md:text-4xl md:leading-7']:
 						variant === 'body' || variant === 'subtitle',
 					['text-base']: variant === 'p',
-					['']: variant === 'custom',
 					['truncate']: truncate,
 				},
 				className
