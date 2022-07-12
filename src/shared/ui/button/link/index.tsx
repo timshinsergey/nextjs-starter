@@ -1,4 +1,4 @@
-import { FC, ComponentProps, ReactNode } from 'react'
+import { ComponentProps, ReactNode, forwardRef } from 'react'
 
 import DefaultButton from '../default'
 
@@ -9,20 +9,18 @@ export interface ButtonLinkProps extends ComponentProps<'a'> {
 	leftIcon?: ReactNode
 }
 
-const ButtonLink: FC<ButtonLinkProps> = ({
-	children,
-	rightIcon,
-	leftIcon,
-	variant = 'primary',
-	...props
-}): JSX.Element => {
-	return (
-		<DefaultButton el='a' variant={variant} {...props}>
-			{leftIcon && leftIcon}
-			{children}
-			{rightIcon && rightIcon}
-		</DefaultButton>
-	)
-}
+const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
+	({ children, rightIcon, leftIcon, variant = 'primary', ...props }, ref): JSX.Element => {
+		return (
+			<DefaultButton ref={ref} el='a' variant={variant} {...props}>
+				{leftIcon && leftIcon}
+				{children}
+				{rightIcon && rightIcon}
+			</DefaultButton>
+		)
+	}
+)
+
+ButtonLink.displayName = 'ButtonLink'
 
 export default ButtonLink
