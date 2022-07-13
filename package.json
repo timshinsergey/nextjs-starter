@@ -18,6 +18,7 @@
     "tailwind": "tailwind-config-viewer -o"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^0.1.2-rc.52",
     "classnames": "^2.3.1",
     "keen-slider": "^6.7.0",
     "next": "12.2.0",
