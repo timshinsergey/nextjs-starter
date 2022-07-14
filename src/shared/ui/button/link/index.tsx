@@ -3,8 +3,8 @@ import { ComponentProps, ReactNode, forwardRef } from 'react'
 import DefaultButton from '../default'
 
 export interface ButtonLinkProps extends ComponentProps<'a'> {
-	variant?: 'base' | 'primary' | 'secondary' | 'outlined'
-	size?: 'small' | 'medium' | 'large'
+	variant?: 'base' | 'primary' | 'secondary' | 'outlined' | 'custom'
+	size?: 'small' | 'medium' | 'large' | 'custom'
 	rightIcon?: ReactNode
 	leftIcon?: ReactNode
 }

@@ -2,8 +2,8 @@ import { ComponentProps, forwardRef } from 'react'
 import cn from 'classnames'
 
 export interface IconButtonProps extends ComponentProps<'button'> {
-	variant?: 'primary' | 'secondary' | 'outlined'
-	size?: 'small' | 'medium' | 'large'
+	variant?: 'primary' | 'secondary' | 'outlined' | 'custom'
+	size?: 'small' | 'medium' | 'large' | 'custom'
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(

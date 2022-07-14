@@ -5,8 +5,8 @@ import s from './index.module.css'
 
 export type DefaultButtonOwnProps<E extends ElementType = ElementType> = {
 	el?: E
-	variant?: 'link' | 'base' | 'primary' | 'secondary' | 'outlined'
-	size?: 'small' | 'medium' | 'large'
+	variant?: 'link' | 'base' | 'primary' | 'secondary' | 'outlined' | 'custom'
+	size?: 'small' | 'medium' | 'large' | 'custom'
 	className?: string
 }
 

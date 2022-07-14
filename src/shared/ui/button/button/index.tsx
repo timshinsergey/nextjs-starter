@@ -6,7 +6,7 @@ import Spinner from '@shared/ui/spinner'
 
 export interface ButtonProps extends ComponentProps<'button'> {
 	variant?: 'base' | 'primary' | 'secondary' | 'outlined'
-	size?: 'small' | 'medium' | 'large'
+	size?: 'small' | 'medium' | 'large' | 'custom'
 	loading?: boolean
 	rightIcon?: ReactNode
 	leftIcon?: ReactNode
