@@ -1,57 +1,58 @@
-# Step 1. Rebuild the source code only when needed
-FROM node:18-alpine AS builder
-
+# Install dependencies only when needed
+FROM node:16-alpine AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
+# COPY package.json yarn.lock ./
+# RUN yarn install --frozen-lockfile
 
-# Copy lock files if file exists
-COPY package.json package-lock.json* ./
+# If using npm with a `package-lock.json` comment out above and use below instead
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Omit --production flag for TypeScript devDependencies
-RUN npm install
+# Rebuild the source code only when needed
+FROM node:16-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-COPY src ./src
-COPY public ./public
-COPY next.config.js .
-COPY tsconfig.json .
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+# ENV NEXT_TELEMETRY_DISABLED 1
 
-# Environment variables must be present at build time
-# https://github.com/vercel/next.js/discussions/14030
-ARG ENV_VARIABLE
-ENV ENV_VARIABLE=${ENV_VARIABLE}
-ARG NEXT_PUBLIC_ENV_VARIABLE
-ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
+# RUN yarn build
 
-# Uncomment the following line to disable telemetry at build time
-ENV NEXT_TELEMETRY_DISABLED 1
-
+# If using npm comment out above and use below instead
 RUN npm run build
 
-# Step 2. Production image, copy all the files and run next
-FROM node:18-alpine AS runner
-
+# Production image, copy all the files and run next
+FROM node:16-alpine AS runner
 WORKDIR /app
 
-# Don't run production as root
+ENV NODE_ENV production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+ENV NEXT_TELEMETRY_DISABLED 1
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-USER nextjs
 
+# You only need to copy next.config.js if you are NOT using the default configuration
+COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.js .
-COPY --from=builder /app/package.json .
+COPY --from=builder /app/package.json ./package.json
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Environment variables must be redefined at run time
-ARG ENV_VARIABLE
-ENV ENV_VARIABLE=${ENV_VARIABLE}
-ARG NEXT_PUBLIC_ENV_VARIABLE
-ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
+USER nextjs
 
-# Uncomment the following line to disable telemetry at run time
-ENV NEXT_TELEMETRY_DISABLED 1
+EXPOSE 3000
 
-CMD node server.js
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+
+
