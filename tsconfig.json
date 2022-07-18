@@ -19,6 +19,7 @@
     "incremental": true,
     "paths": {
       "@shared/*": ["src/shared/*"],
+      "@rootPages/*": ["pages/*"],
       "@pages/*": ["src/pages/*"],
       "@entities/*": ["src/entities/*"],
       "@features/*": ["src/features/*"],

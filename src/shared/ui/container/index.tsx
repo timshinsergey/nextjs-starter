@@ -1,4 +1,4 @@
-import { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
+import { ReactNode, FC, ComponentType, HTMLAttributes, memo } from 'react'
 import cn from 'classnames'
 
 export interface ContainerProps {
@@ -19,4 +19,4 @@ const Container: FC<ContainerProps> = ({
 	)
 }
 
-export default Container
+export default memo(Container)
