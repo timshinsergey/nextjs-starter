@@ -38,26 +38,3 @@
 #         run: |
 #           docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
 #           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
-#   deploy:
-#     needs:
-#       - build
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Deploy Serverless Container
-#         id: deploy-sls-container
-#         uses: yc-actions/yc-sls-container-deploy@v1
-#         with:
-#           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-#           container-name: next-starter
-#           folder-id: b1gke16sajj09en730l2
-#           revision-service-account-id: ajeeshqgd7ku5q8128ju
-#           revision-cores: 1
-#           revision-memory: 128Mb
-#           revision-core-fraction: 5
-#           revision-concurrency: 8
-#           revision-image-url: cr.yandex/crpsekeafeo0j7cjq530/front:${{ github.sha }}
-#           revision-env: |
-#             ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
-#             NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
-#           revision-execution-timeout: 10
