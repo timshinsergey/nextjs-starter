@@ -1,0 +1,12 @@
+.root[data-orientation='horizontal'] {
+	@apply h-4;
+}
+
+.root[data-orientation='vertical'] {
+	@apply w-4 flex-col h-full;
+}
+
+.track[data-orientation='horizontal'],
+.track[data-orientation='vertical'] {
+	@apply h-1;
+}
