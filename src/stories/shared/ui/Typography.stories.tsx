@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import Typography, { TypographyProps } from '@shared/ui/typography'
 
 export default {
-	title: 'SharedUi/Typography',
+	title: 'Shared/Ui/Typography',
 	component: Typography,
 } as Meta
 

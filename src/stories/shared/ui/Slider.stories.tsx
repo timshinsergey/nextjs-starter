@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { Slider, SliderProps } from '@shared/ui/slider'
 
 export default {
-	title: 'SharedUi/Slider',
+	title: 'Shared/Ui/Slider',
 	component: Slider,
 } as Meta
 

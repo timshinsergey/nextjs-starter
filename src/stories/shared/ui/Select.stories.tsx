@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { Select, SelectProps } from '@shared/ui/select'
 
 export default {
-	title: 'SharedUi/Select',
+	title: 'Shared/Ui/Select',
 	component: Select,
 } as Meta
 
