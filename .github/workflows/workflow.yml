@@ -49,7 +49,7 @@
 #         uses: yc-actions/yc-sls-container-deploy@v1
 #         with:
 #           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-#           container-name: my-first-registry
+#           container-name: next-starter
 #           folder-id: b1gke16sajj09en730l2
 #           revision-service-account-id: ajeeshqgd7ku5q8128ju
 #           revision-cores: 1
