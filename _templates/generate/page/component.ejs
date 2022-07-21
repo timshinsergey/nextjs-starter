@@ -1,17 +1,15 @@
 ---
 to: src/pages<%= path %>.tsx
 ---
-import React, { FC, memo } from 'react'
+import React, { FC, HTMLAttributes, memo } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface <%= h.changeCase.pascal(name) %>PageProps {
+export interface <%= h.changeCase.pascal(name) %>PageProps extends HTMLAttributes<HTMLDivElement> {}
 
-}
-
-const <%= h.changeCase.pascal(name) %>Page: FC<<%= h.changeCase.pascal(name) %>PageProps> = (): JSX.Element => {
+const <%= h.changeCase.pascal(name) %>Page: FC<<%= h.changeCase.pascal(name) %>PageProps> = ({ className, ...props }): JSX.Element => {
 	return (
-    <div className={s.component}>
+    <div className={cn(s.component, className)} {...props}>
       <%= h.changeCase.pascal(name) %> Page
     </div>
 	)

@@ -1,17 +1,15 @@
 ---
 to: src/<%= folder %>/<%= h.inflection.dasherize(name) %>/index.tsx
 ---
-import React, { FC, memo } from 'react'
+import React, { FC, HTMLAttributes, memo } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface <%= h.changeCase.pascal(name) %>Props {
+export interface <%= h.changeCase.pascal(name) %>Props extends HTMLAttributes<HTMLDivElement> {}
 
-}
-
-const <%= h.changeCase.pascal(name) %>: FC<<%= h.changeCase.pascal(name) %>Props> = ({  }): JSX.Element => {
+const <%= h.changeCase.pascal(name) %>: FC<<%= h.changeCase.pascal(name) %>Props> = ({ className, ...props }): JSX.Element => {
   return (
-    <div className={s.component}>
+    <div className={cn(s.component, className)} {...props}>
       <%= h.changeCase.pascal(name) %>
     </div>
   )
