@@ -1,5 +1,6 @@
 import '@app/app.css'
 import type { ReactElement, ReactNode } from 'react'
+import { I18nProvider } from 'next-rosetta'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
@@ -18,10 +19,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	const getLayout = Component.getLayout ?? ((page) => page)
 
 	return (
-		<>
-			<DefaultSeo {...SEO}/>
+		<I18nProvider table={pageProps.table /* From getStaticProps */}>
+			<DefaultSeo {...SEO} />
 			{getLayout(<Component {...pageProps} />)}
-		</>
+		</I18nProvider>
 	)
 }
 
