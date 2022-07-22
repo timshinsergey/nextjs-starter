@@ -15,4 +15,6 @@ const <%= h.changeCase.pascal(name) %>: FC<<%= h.changeCase.pascal(name) %>Props
   )
 }
 
+// If you leave memo, the i18n texts
+// will not be displayed when switching languages
 export default memo(<%= h.changeCase.pascal(name) %>)
