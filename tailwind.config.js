@@ -4,21 +4,22 @@ module.exports = {
 	theme: {
 		extend: {
 			container: {
+				// all screens must be recorded
+				// for paddings to work
 				screens: {
-					'2xl': '1440px',
+					sm: '640px',
+					md: '768px',
+					lg: '1024px',
+					xl: '1280px',
+					'2xl': '1536px',
 					'3xl': '1920px',
 				},
 				center: true,
-				// with bugs
-				// not all breakpoints work
-				// padding: {
-				// 	DEFAULT: '1rem',
-				// 	sm: '3rem',
-				// 	sm: '3rem',
-				// 	lg: '3rem',
-				// 	xl: '4rem',
-				// 	'2xl': '4rem',
-				// },
+				padding: {
+					DEFAULT: '1rem',
+					sm: '3rem',
+					xl: '4rem',
+				},
 			},
 		},
 	},
