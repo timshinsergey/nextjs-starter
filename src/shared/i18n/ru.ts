@@ -43,4 +43,10 @@ export const table: SiteLocale = {
 	footer: {
 		powered: 'При поддержке',
 	},
+	page404: {
+		title: '404 - Страница не найдена',
+	},
+	page500: {
+		title: '500 - Произошла ошибка на стороне сервера',
+	},
 }

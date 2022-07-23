@@ -40,4 +40,10 @@ export interface SiteLocale {
 	footer: {
 		powered: string
 	}
+	page404: {
+		title: string
+	}
+	page500: {
+		title: string
+	}
 }

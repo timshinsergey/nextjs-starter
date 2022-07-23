@@ -42,4 +42,10 @@ export const table: SiteLocale = {
 	footer: {
 		powered: 'Powered by',
 	},
+	page404: {
+		title: '404 - Page Not Found',
+	},
+	page500: {
+		title: '500 - Server-side error occurred',
+	},
 }
