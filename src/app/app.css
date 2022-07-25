@@ -1,3 +1,11 @@
+#nprogress {
+	pointer-events: none;
+}
+
+#nprogress .bar {
+	@apply fixed top-0 left-0 z-50 w-full h-0.5 bg-yellow-400;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
