@@ -1,4 +1,5 @@
-import { ComponentProps, ElementType, forwardRef, ReactElement, Ref } from 'react'
+import React, { forwardRef } from 'react'
+import type { ComponentProps, ElementType, ReactElement, Ref } from 'react'
 import cn from 'classnames'
 
 import s from './index.module.css'

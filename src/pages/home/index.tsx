@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import Link from 'next/link'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'

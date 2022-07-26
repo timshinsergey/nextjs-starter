@@ -1,4 +1,5 @@
-import { ComponentProps, ReactNode, forwardRef } from 'react'
+import { forwardRef } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
 import DefaultButton from '../default'
 

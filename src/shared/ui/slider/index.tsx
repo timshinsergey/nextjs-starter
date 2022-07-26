@@ -1,4 +1,5 @@
-import { ButtonHTMLAttributes, FC, forwardRef, useState } from 'react'
+import { forwardRef, useState } from 'react'
+import type { ButtonHTMLAttributes, FC } from 'react'
 import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import cn from 'classnames'

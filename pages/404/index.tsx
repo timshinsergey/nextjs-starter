@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import type { GetStaticProps } from 'next'
-import { I18nProps } from 'next-rosetta'
+import type { I18nProps } from 'next-rosetta'
 import type { SiteLocale } from '@shared/i18n'
 import type { NextPageWithLayout } from '@rootPages/_app'
 import Layout from '@widgets/layout'

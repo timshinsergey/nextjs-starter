@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react'
+import { forwardRef, memo } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import cn from 'classnames'
 import Icon from '../icon'

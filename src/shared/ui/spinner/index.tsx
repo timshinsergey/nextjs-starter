@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 

@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'

@@ -1,4 +1,5 @@
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef } from 'react'
+import type { ReactNode } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 
 export type SelectProps = SelectPrimitive.SelectProps & {

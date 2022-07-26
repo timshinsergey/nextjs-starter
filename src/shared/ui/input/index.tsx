@@ -1,4 +1,5 @@
-import React, { forwardRef, InputHTMLAttributes, memo } from 'react'
+import { forwardRef, memo } from 'react'
+import type { InputHTMLAttributes } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 

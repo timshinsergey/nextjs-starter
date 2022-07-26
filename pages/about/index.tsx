@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
 import type { GetStaticProps } from 'next'
-import { I18nProps, useI18n } from 'next-rosetta'
+import type { I18nProps } from 'next-rosetta'
+import { useI18n } from 'next-rosetta'
 import { NextSeo } from 'next-seo'
 import type { SiteLocale } from '@shared/i18n'
 import type { NextPageWithLayout } from '@rootPages/_app'
@@ -12,23 +13,23 @@ const About: NextPageWithLayout = () => {
 	const { t } = i18n
 
 	return (
-    <>
-      <NextSeo
-        title={t('about.head.title')}
-        description={t('about.head.description')}
-        openGraph={{
-          title: t('about.head.title'),
-          description: t('about.head.description'),
-        }}
-      />
+		<>
+			<NextSeo
+				title={t('about.head.title')}
+				description={t('about.head.description')}
+				openGraph={{
+					title: t('about.head.title'),
+					description: t('about.head.description'),
+				}}
+			/>
 
-      <AboutPage />
-    </>
+			<AboutPage />
+		</>
 	)
 }
 
 About.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>
+	return <Layout>{page}</Layout>
 }
 
 // Server-side code

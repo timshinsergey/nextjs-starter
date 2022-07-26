@@ -1,4 +1,5 @@
-import React, { ReactNode, FC, ComponentType, HTMLAttributes, memo } from 'react'
+import { memo } from 'react'
+import type { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
 import cn from 'classnames'
 
 export interface ContainerProps {

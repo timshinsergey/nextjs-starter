@@ -1,4 +1,5 @@
-import React, { FC, memo } from 'react'
+import { memo } from 'react'
+import type { FC } from 'react'
 import Link from 'next/link'
 import cn from 'classnames'
 import s from './index.module.css'
@@ -28,7 +29,7 @@ const Separator: FC<{ className?: string }> = ({ className }): JSX.Element => (
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ list }): JSX.Element => {
 	return (
 		<ol
-			className='my-2 grid grid-flow-col justify-start text-sm text-sort-2000 dark:text-sort-2100 lg:text-lg'
+			className='my-2 grid grid-flow-col justify-start text-sm lg:text-lg'
 			itemScope
 			itemType='https://schema.org/BreadcrumbList'
 			aria-label='Строка навигации'

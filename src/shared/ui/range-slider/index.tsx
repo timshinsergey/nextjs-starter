@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react'
+import { forwardRef, memo } from 'react'
 import * as Slider from '@radix-ui/react-slider'
 import cn from 'classnames'
 import s from './index.module.css'

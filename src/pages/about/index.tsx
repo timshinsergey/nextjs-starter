@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
@@ -11,9 +11,9 @@ const AboutPage: FC<AboutPageProps> = ({ className, ...props }): JSX.Element => 
 	const { t } = i18n
 
 	return (
-    <div className={cn(s.component, className)} {...props}>
-      {t('about.hero.title')}
-    </div>
+		<div className={cn(s.component, className)} {...props}>
+			{t('about.hero.title')}
+		</div>
 	)
 }
 

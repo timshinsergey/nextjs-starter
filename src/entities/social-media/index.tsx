@@ -1,8 +1,9 @@
-import { FC, memo } from 'react'
+import { memo } from 'react'
+import type { FC } from 'react'
 import cn from 'classnames'
+import Icon from '@shared/ui/icon'
 import s from './index.module.css'
 import data from './data.json'
-import Icon from '@shared/ui/icon'
 
 export interface SocialMediaProps {
 	className?: string

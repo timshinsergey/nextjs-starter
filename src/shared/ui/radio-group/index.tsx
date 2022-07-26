@@ -1,4 +1,5 @@
-import React, { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
+import type { FC } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import cn from 'classnames'
 import s from './index.module.css'

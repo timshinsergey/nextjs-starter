@@ -1,4 +1,5 @@
-import { FC, memo, useCallback } from 'react'
+import { useCallback } from 'react'
+import type { FC } from 'react'
 import * as RadixCheckbox from '@radix-ui/react-checkbox'
 import cn from 'classnames'
 import s from './index.module.css'
@@ -48,4 +49,4 @@ const Checkbox: FC<CheckboxProps> = ({
 	)
 }
 
-export default memo(Checkbox)
+export default Checkbox

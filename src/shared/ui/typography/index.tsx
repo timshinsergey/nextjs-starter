@@ -1,4 +1,4 @@
-import { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
+import type { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
 import cn from 'classnames'
 
 export interface TypographyProps extends HTMLAttributes<HTMLHeadingElement> {
