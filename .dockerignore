@@ -4,4 +4,7 @@ node_modules
 npm-debug.log
 README.md
 .next
+.github
+.husky
+_templates
 .git
