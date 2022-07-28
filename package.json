@@ -20,7 +20,7 @@
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
     "@radix-ui/react-dialog": "^0.1.8-rc.51",
-    "@radix-ui/react-radio-group": "^0.1.6-rc.47",
+    "@radix-ui/react-radio-group": "^1.0.0",
     "@radix-ui/react-select": "^0.1.2-rc.52",
     "@radix-ui/react-slider": "^0.1.5-rc.47",
     "@radix-ui/react-tabs": "^0.2.0-rc.24",
