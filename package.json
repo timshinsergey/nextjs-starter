@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
-    "@radix-ui/react-dialog": "^0.1.8-rc.51",
+    "@radix-ui/react-dialog": "^1.0.0",
     "@radix-ui/react-radio-group": "^0.1.6-rc.47",
     "@radix-ui/react-select": "^0.1.2-rc.52",
     "@radix-ui/react-slider": "^0.1.5-rc.47",
@@ -55,7 +55,7 @@
     "eslint-plugin-storybook": "^0.5.13",
     "eslint-plugin-tailwindcss": "^3.6.0",
     "husky": "^8.0.1",
-    "hygen": "^6.2.7",
+    "hygen": "^6.2.8",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
