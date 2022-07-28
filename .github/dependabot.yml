@@ -14,9 +14,9 @@ updates:
       time: '00:00'
     open-pull-requests-limit: 10
     reviewers:
-      - sergey
+      - timshinsergey
     assignees:
-      - sergey
+      - timshinsergey
     commit-message:
       prefix: fix
       prefix-development: chore
@@ -29,9 +29,9 @@ updates:
       day: sunday
       time: '00:00'
     reviewers:
-      - sergey
+      - timshinsergey
     assignees:
-      - sergey
+      - timshinsergey
     commit-message:
       prefix: fix
       prefix-development: chore
@@ -44,9 +44,9 @@ updates:
       day: sunday
       time: '00:00'
     reviewers:
-      - sergey
+      - timshinsergey
     assignees:
-      - sergey
+      - timshinsergey
     commit-message:
       prefix: fix
       prefix-development: chore
