@@ -11,3 +11,44 @@ services:
     restart: always
     ports:
       - 3000:3000
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.http.routers.front.rule=Host(`monopomnom.ru`)
+    #   - traefik.http.routers.front.entrypoints=websecure
+    #   - traefik.http.routers.front.tls.certresolver=myresolver
+    #   - traefik.http.routers.front.middlewares=traefik-compress
+  # traefik:
+  #   image: traefik:v2.8
+  #   container_name: traefik
+  #   command:
+  #     - --api.insecure=true
+  #     - --providers.docker=true
+  #     - --providers.docker.exposedbydefault=false
+  #     - --entrypoints.web.address=:80
+  #     - --entrypoints.web.http.redirections.entryPoint.to=websecure
+  #     - --entrypoints.websecure.address=:443
+  #     - --certificatesresolvers.myresolver.acme.httpchallenge=true
+  #     - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+  #     - --certificatesresolvers.myresolver.acme.email=timshinsergey1@gmail.com
+  #     - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #     - 8080:8080
+  #   volumes:
+  #     - letsencrypt:/letsencrypt
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   labels:
+  #     - traefik.http.middlewares.traefik-compress.compress=true
+  #     - traefik.enable=true
+  #     - traefik.http.routers.traefik.rule=Host(`monopomnom.ru`)
+  #     - traefik.http.routers.traefik.entrypoints=websecure
+  #     - traefik.http.routers.traefik.tls.certresolver=myresolver
+  #     - traefik.http.routers.traefik.service=api@internal
+  #     - traefik.http.routers.traefik.middlewares=traefik-compress
+
+  # Add more containers below (nginx, postgres, etc.)
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+# volumes:
+#   letsencrypt:
