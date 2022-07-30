@@ -11,6 +11,7 @@ services:
     restart: always
     ports:
       - 3000:3000
+    # for domain connection
     # labels:
     #   - traefik.enable=true
     #   - traefik.http.routers.front.rule=Host(`monopomnom.ru`)
