@@ -1,4 +1,5 @@
 import type { FC, HTMLAttributes } from 'react'
+import Link from 'next/link'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
@@ -13,6 +14,9 @@ const AboutPage: FC<AboutPageProps> = ({ className, ...props }): JSX.Element => 
 	return (
 		<div className={cn(s.component, className)} {...props}>
 			{t('about.hero.title')}
+			<Link href='/'>
+				<a>about</a>
+			</Link>
 		</div>
 	)
 }
