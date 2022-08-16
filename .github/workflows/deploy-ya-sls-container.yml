@@ -18,7 +18,7 @@ env:
   CR_IMAGE: next-starter
   SC_NAME: next-starter
   CR_REPOSITORY: crpsekeafeo0j7cjq530
-  CR_URL: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}
+  CR_URL: $CR_HOST/$CR_REPOSITORY/$CR_IMAGE
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
