@@ -31,17 +31,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       # Runs a single command using the runners shell
-      # - name: Yandex Cloud CR "Login" Action for GitHub Actions
-      #   uses: yc-actions/yc-cr-login@v1
-      #   with:
-      #     yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-
-      # - name: Build, tag, and push front image to Yandex Cloud Container Registry
-      #   env:
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     docker build -t ${{ env.CR_URL}}:$IMAGE_TAG .
-      #     docker push ${{ env.CR_URL}}:$IMAGE_TAG
+      - name: Yandex Cloud CR "Login" Action for GitHub Actions
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      - name: Build, tag, and push front image to Yandex Cloud Container Registry
+        run: |
+          docker build -t ${{ env.CR_URL}}:${{ github.sha }} .
+          docker push ${{ env.CR_URL}}:${{ github.sha }}
   deploy:
     needs:
       - build
@@ -60,7 +57,7 @@ jobs:
           revision-memory: 128Mb
           revision-core-fraction: 5
           revision-concurrency: 8
-          revision-image-url: ${{ env.CR_URL}}:96c88fe77e2623074c0188c04c59286d695f63ef
+          revision-image-url: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}:${{ github.sha }}
           revision-env: |
             ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
             NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
