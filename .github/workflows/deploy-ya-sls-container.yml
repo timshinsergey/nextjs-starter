@@ -13,6 +13,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  CR_HOST: cr.yandex
+  CR_IMAGE: next-starter
+  SC_NAME: next-starter
+  CR_REPOSITORY: crpsekeafeo0j7cjq530
+  CR_URL: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
@@ -31,12 +38,10 @@ jobs:
 
       - name: Build, tag, and push front image to Yandex Cloud Container Registry
         env:
-          CR_REGISTRY: crpsekeafeo0j7cjq530
-          CR_REPOSITORY: front-starter
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+          docker build -t ${{ env.CR_URL}}:$IMAGE_TAG .
+          docker push ${{ env.CR_URL}}:$IMAGE_TAG
   deploy:
     needs:
       - build
@@ -48,14 +53,14 @@ jobs:
         uses: yc-actions/yc-sls-container-deploy@v2
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-          container-name: next-starter
+          container-name: ${{ env.SC_NAME}}
           folder-id: b1gke16sajj09en730l2
           revision-service-account-id: ajeeshqgd7ku5q8128ju
           revision-cores: 1
           revision-memory: 128Mb
           revision-core-fraction: 5
           revision-concurrency: 8
-          revision-image-url: cr.yandex/crpsekeafeo0j7cjq530/front-starter:${{ github.sha }}
+          revision-image-url: ${{ env.CR_URL}}:${{ github.sha }}
           revision-env: |
             ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
             NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
