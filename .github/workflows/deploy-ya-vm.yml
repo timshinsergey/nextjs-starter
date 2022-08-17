@@ -51,7 +51,7 @@ jobs:
         id: deploy-coi
         uses: yc-actions/yc-coi-deploy@v1
         env:
-          FRONT_IMAGE_URL: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}:${{ github.sha }}
+          IMAGE_URL: ${{ env.CR_HOST }}/${{ env.CR_REPOSITORY }}/${{ env.CR_IMAGE }}:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
           NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
