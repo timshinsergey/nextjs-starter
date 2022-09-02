@@ -11,13 +11,18 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
+	const handleClick = async () => {
+		const { YMReachGoal } = await import('@shared/libs/metrika/index')
+		YMReachGoal('to-about-page', { status: 'info' })
+	}
+
 	return (
 		<div className='container mx-auto px-8'>
 			<main className='flex min-h-screen flex-1 flex-col items-center justify-center py-16'>
 				<h1 className={cn(s.title, 'm-0 text-6xl leading-tight text-center')}>
 					{t('home.hero.title')} <a href='https://nextjs.org'>Next.js!</a>{' '}
 					<Link href='/about'>
-						<a>{t('home.hero.link')}</a>
+						<a onClick={handleClick}>{t('home.hero.link')}</a>
 					</Link>
 				</h1>
 

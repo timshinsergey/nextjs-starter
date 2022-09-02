@@ -6,6 +6,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import NProgress from 'nprogress'
+import ym, { YMInitializer } from 'react-yandex-metrika'
 import SEO from '@app/next-seo.config.json'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -22,6 +23,12 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
+Router.events.on('routeChangeComplete', (url: string) => {
+	if (typeof window !== 'undefined') {
+		ym('hit', url)
+	}
+})
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	// Use the layout defined at the page level, if available
 	const getLayout = Component.getLayout ?? ((page) => page)
@@ -29,6 +36,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	return (
 		<I18nProvider table={pageProps.table /* From getStaticProps */}>
 			<DefaultSeo {...SEO} />
+			<YMInitializer accounts={[90203057]} options={{ webvisor: true, defer: true }} version='2' />
 			{getLayout(<Component {...pageProps} />)}
 		</I18nProvider>
 	)
