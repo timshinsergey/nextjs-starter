@@ -31,7 +31,8 @@
     "next-seo": "^5.5.0",
     "nprogress": "^0.2.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-yandex-metrika": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
