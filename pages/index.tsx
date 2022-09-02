@@ -9,6 +9,7 @@ import Layout from '@widgets/layout'
 import HomePage from '@pages/home'
 
 const Home: NextPageWithLayout = () => {
+	console.log('mounted')
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
@@ -33,9 +34,12 @@ Home.getLayout = function getLayout(page: ReactElement) {
 }
 
 // Server-side code
-export const getStaticProps: GetStaticProps<I18nProps<SiteLocale>> = async (context) => {
-	const locale = context.locale || context.defaultLocale
-	const { table = {} } = await import(`@shared/i18n/${locale}`)
+export const getStaticProps: GetStaticProps<I18nProps<SiteLocale>> = async ({
+	locale,
+	defaultLocale,
+}) => {
+	const currentLocale = locale || defaultLocale
+	const { table = {} } = await import(`@shared/i18n/${currentLocale}`)
 	return { props: { table } } // Passed to `/pages/_app.tsx`
 }
 
