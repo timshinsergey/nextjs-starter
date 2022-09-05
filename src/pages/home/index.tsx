@@ -17,7 +17,7 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 				<h1 className={cn(s.title, 'm-0 text-6xl leading-tight text-center')}>
 					{t('home.hero.title')} <a href='https://nextjs.org'>Next.js!</a>{' '}
 					<Link href='/about'>
-						<a onClick={handleClick}>{t('home.hero.link')}</a>
+						<a>{t('home.hero.link')}</a>
 					</Link>
 				</h1>
 
