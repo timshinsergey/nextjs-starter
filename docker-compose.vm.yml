@@ -42,11 +42,13 @@ services:
     labels:
       - traefik.http.middlewares.traefik-compress.compress=true
       - traefik.enable=true
-      - traefik.http.routers.traefik.rule=Host(`monopomnom.ru`)
+      - traefik.http.routers.traefik.rule=Host(`traefik.monopomnom.ru`)
       - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.routers.traefik.service=api@internal
       - traefik.http.routers.traefik.middlewares=traefik-compress
+      - traefik.http.middlewares.traefik-auth.basicauth.users={{ env.TRAEFIK_DASHBOARD_LOGIN }}:{{ env.TRAEFIK_DASHBOARD_PASSWORD }}
+      - traefik.http.routers.traefik.middlewares=traefik-auth
 
   # Add more containers below (nginx, postgres, etc.)
   # Define a network, which allows containers to communicate
