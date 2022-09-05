@@ -6,6 +6,7 @@ import Document, {
 	DocumentContext,
 	DocumentInitialProps,
 } from 'next/document'
+import { GTM_ID } from '@shared/libs/gtag'
 
 class MyDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -21,8 +22,15 @@ class MyDocument extends Document {
 				</Head>
 
 				<body>
+					<noscript>
+						<iframe
+							src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+							height='0'
+							width='0'
+							style={{ display: 'none', visibility: 'hidden' }}
+						/>
+					</noscript>
 					<Main />
-
 					<NextScript />
 				</body>
 			</Html>
