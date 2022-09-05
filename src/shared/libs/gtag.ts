@@ -1,0 +1,10 @@
+const GTM_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
+
+const pageview = (url) => {
+	window.dataLayer.push({
+		event: 'pageview',
+		page: url,
+	})
+}
+
+export { GTM_ID, pageview }
