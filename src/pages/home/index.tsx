@@ -11,11 +11,6 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
-	const handleClick = async () => {
-		const { YMReachGoal } = await import('@shared/libs/metrika/index')
-		YMReachGoal('to-about-page', { status: 'info' })
-	}
-
 	return (
 		<div className='container mx-auto px-8'>
 			<main className='flex min-h-screen flex-1 flex-col items-center justify-center py-16'>
