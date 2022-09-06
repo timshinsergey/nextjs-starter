@@ -38,6 +38,11 @@ jobs:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
       - name: Build, tag, and push front image to Yandex Cloud Container Registry
+        env:
+          ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
+          NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
+          ANALYZE: ${{ secrets.ANALYZE }}
+          NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
         run: |
           docker build -t ${{ env.CR_URL}}:${{ github.sha }} .
           docker push ${{ env.CR_URL}}:${{ github.sha }}
@@ -53,10 +58,6 @@ jobs:
         env:
           IMAGE_URL: ${{ env.CR_HOST }}/${{ env.CR_REPOSITORY }}/${{ env.CR_IMAGE }}:${{ github.sha }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
-          NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
-          ANALYZE: ${{ secrets.ANALYZE }}
-          NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
           TRAEFIK_DASHBOARD_LOGIN: ${{ secrets.TRAEFIK_DASHBOARD_LOGIN }}
           TRAEFIK_DASHBOARD_PASSWORD: ${{ secrets.TRAEFIK_DASHBOARD_PASSWORD }}
         with:

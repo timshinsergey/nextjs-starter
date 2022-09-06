@@ -5,12 +5,17 @@ services:
     image: next-starter
     container_name: front
     build:
-      args:
-        ENV_VARIABLE: ${ENV_VARIABLE}
-        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-        NEXT_PUBLIC_DOMAIN: ${NEXT_PUBLIC_DOMAIN}
-        ANALYZE: ${ANALYZE}
-        NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      ENV_VARIABLE: ${ENV_VARIABLE}
+      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+      ANALYZE: ${ANALYZE}
+      NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
+    volumes:
+      - ./pages:/app/pages
+      - ./src:/app/src
+      - ./public:/app/public
     restart: always
     # for domain connection
     labels:
