@@ -61,4 +61,6 @@ jobs:
           revision-env: |
             ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
             NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
+            ANALYZE=${{ secrets.ANALYZE }}
+            NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
           revision-execution-timeout: 10

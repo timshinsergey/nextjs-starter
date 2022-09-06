@@ -19,6 +19,7 @@ class MyDocument extends Document {
 			<Html lang='ru'>
 				<Head>
 					<link rel='icon' href='/favicon.ico' />
+					<link href='https://www.googletagmanager.com' rel='preconnect' />
 				</Head>
 
 				<body>

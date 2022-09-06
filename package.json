@@ -15,7 +15,9 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
-    "tailwind": "tailwind-config-viewer -o"
+    "tailwind": "tailwind-config-viewer -o",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up -d",
+    "docker:clean": "docker system prune -a -f --volumes"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
