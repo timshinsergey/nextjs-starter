@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  front:
+    image: next-starter
+    container_name: front
+    build:
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+        NEXT_PUBLIC_DOMAIN: ${NEXT_PUBLIC_DOMAIN}
+        ANALYZE: ${ANALYZE}
+        NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
+    restart: always
+    # for domain connection
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.front.loadbalancer.server.port=3000
+      - traefik.http.routers.front.rule=Host(`next-starter.localhost`)
+  traefik:
+    image: traefik:v2.8
+    container_name: traefik
+    command:
+      - --api.insecure=true
+      - --api.dashboard=true
+      - --api.debug=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.http.middlewares.traefik-compress.compress=true
+      - traefik.enable=true
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.middlewares=traefik-compress
+      - traefik.http.routers.traefik.rule=Host(`dash.localhost`)

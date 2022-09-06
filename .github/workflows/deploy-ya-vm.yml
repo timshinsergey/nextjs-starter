@@ -55,6 +55,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
           NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
+          ANALYZE: ${{ secrets.ANALYZE }}
+          NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: b1gke16sajj09en730l2
