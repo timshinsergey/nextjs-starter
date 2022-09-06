@@ -21,6 +21,8 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 					</Link>
 				</h1>
 
+				<p>Next public env variable: {process.env.NEXT_PUBLIC_ENV_VARIABLE}</p>
+
 				<p className={cn(s.description, 'text-center my-16 text-2xl leading-normal')}>
 					{t('home.hero.description')}{' '}
 					<code className={cn(s.code, ' rounded p-3 text-lg')}>pages/index.tsx</code>
