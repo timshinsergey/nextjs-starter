@@ -57,6 +57,8 @@ jobs:
           NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
           ANALYZE: ${{ secrets.ANALYZE }}
           NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
+          TRAEFIK_DASHBOARD_LOGIN: ${{ secrets.TRAEFIK_DASHBOARD_LOGIN }}
+          TRAEFIK_DASHBOARD_PASSWORD: ${{ secrets.TRAEFIK_DASHBOARD_PASSWORD }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: b1gke16sajj09en730l2
