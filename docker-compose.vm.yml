@@ -52,14 +52,12 @@ services:
       - traefik.http.routers.traefik.service=api@internal
 
       # global redirect to https
-      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-      - "traefik.http.routers.http-catchall.entrypoints=web"
-      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      - traefik.http.routers.http-catchall.entrypoints=web
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
 
       # middleware redirect
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-
-      - traefik.http.middlewares.traefik-compress.compress=true
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
 
 # Add more containers below (nginx, postgres, etc.)
 # Define a network, which allows containers to communicate
