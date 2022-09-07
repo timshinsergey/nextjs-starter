@@ -14,12 +14,11 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.front.rule=Host(`monopomnom.ru`)
-      - traefik.http.routers.front.middlewares=traefik-compress
       - traefik.http.routers.front.tls=true
       - traefik.http.routers.front.tls.certresolver=myresolver
       - traefik.http.routers.front.entrypoints=websecure
       - traefik.http.services.front.loadbalancer.server.port=3000
-      - traefik.http.middlewares.traefik-compress.compress=true
+      - traefik.http.middlewares.front-compress.compress=true
   traefik:
     image: traefik:v2.8
     container_name: traefik
@@ -47,7 +46,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`traefik.monopomnom.ru`)
-      - traefik.http.routers.traefik.middlewares=traefik-compress
       - traefik.http.routers.traefik.tls=true
       - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.routers.traefik.entrypoints=web
