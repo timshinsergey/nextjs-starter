@@ -16,24 +16,41 @@ services:
       - traefik.http.routers.front.rule=Host(`monopomnom.ru`)
       - traefik.http.middlewares.traefik-compress.compress=true
       - traefik.http.routers.traefik.middlewares=traefik-compress
+      - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.services.front.loadbalancer.server.port=3000
   traefik:
     image: traefik:v2.8
     container_name: traefik
     command:
+      - --log.level=DEBUG
       - --api.insecure=true
       - --api.dashboard=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entryPoint.to=websecure
+      - --certificatesresolvers.myresolver.acme.httpchallenge=true
+      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.myresolver.acme.email=timshinsergey1@gmail.com
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
     ports:
       - 80:80
+      - 443:443
       - 8080:8080
     volumes:
+      - /letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`traefik.monopomnom.ru`)
       - traefik.http.middlewares.traefik-compress.compress=true
       - traefik.http.routers.traefik.middlewares=traefik-compress
+      - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.service=api@internal
+
+# Add more containers below (nginx, postgres, etc.)
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+volumes:
+  letsencrypt:
