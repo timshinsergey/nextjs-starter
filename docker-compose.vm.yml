@@ -18,8 +18,7 @@ services:
       - traefik.http.routers.front.middlewares=traefik-compress
       - traefik.http.routers.front.entrypoints=https
       - traefik.http.routers.front.tls=true
-      - traefik.http.routers.front.tls.certresolver=letsEncrypt
-      - traefik.http.routers.front.tls.certresolver=mytlschallenge
+      - traefik.http.routers.front.tls.certresolver=myresolver
       - traefik.http.services.front-service.loadbalancer.server.port=3000
   traefik:
     image: traefik:v2.8
@@ -51,7 +50,7 @@ services:
       - traefik.http.routers.traefik.middlewares=traefik-compress
       - traefik.http.routers.traefik.entrypoints=https
       - traefik.http.routers.traefik.tls=true
-      - traefik.http.routers.traefik.tls.certresolver=letsEncrypt
+      - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.services.traefik-service.loadbalancer.server.port=888
       - traefik.http.routers.traefik.service=api@internal
 
