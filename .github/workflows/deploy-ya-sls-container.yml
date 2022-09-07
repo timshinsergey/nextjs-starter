@@ -36,11 +36,6 @@ jobs:
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
       - name: Build, tag, and push front image to Yandex Cloud Container Registry
-        env:
-          ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
-          NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
-          ANALYZE: ${{ secrets.ANALYZE }}
-          NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
         run: |
           docker build -t ${{ env.CR_URL}}:${{ github.sha }} .
           docker push ${{ env.CR_URL}}:${{ github.sha }}
@@ -63,4 +58,9 @@ jobs:
           revision-core-fraction: 5
           revision-concurrency: 8
           revision-image-url: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}:${{ github.sha }}
+          revision-env: |
+            ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
+            NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
+            ANALYZE=${{ secrets.ANALYZE }}
+            NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
           revision-execution-timeout: 10

@@ -21,17 +21,6 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-# Environment variables must be present at build time
-# https://github.com/vercel/next.js/discussions/14030
-ARG ENV_VARIABLE
-ENV ENV_VARIABLE=${ENV_VARIABLE}
-ARG NEXT_PUBLIC_ENV_VARIABLE
-ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
-ARG ANALYZE
-ENV ANALYZE=${ANALYZE}
-ARG NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
-ENV NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
-
 # RUN yarn build
 
 # If using npm comment out above and use below instead
@@ -63,16 +52,6 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT 3000
-
-# Environment variables must be redefined at run time
-ARG ENV_VARIABLE
-ENV ENV_VARIABLE=${ENV_VARIABLE}
-ARG NEXT_PUBLIC_ENV_VARIABLE
-ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
-ARG ANALYZE
-ENV ANALYZE=${ANALYZE}
-ARG NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
-ENV NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
 
 CMD ["node", "server.js"]
 

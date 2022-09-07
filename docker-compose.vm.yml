@@ -4,12 +4,11 @@ services:
   front:
     image: '{{ env.IMAGE_URL }}'
     container_name: front
-    build:
-      args:
-        ENV_VARIABLE: ${ENV_VARIABLE}
-        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-        ANALYZE: ${ANALYZE}
-        NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
+    environment:
+      ENV_VARIABLE: '{{ env.ENV_VARIABLE }}'
+      NEXT_PUBLIC_ENV_VARIABLE: '{{ env.NEXT_PUBLIC_ENV_VARIABLE }}'
+      ANALYZE: '{{ env.ANALYZE }}'
+      NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: '{{ env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}'
     restart: always
     # for domain connection
     labels:
