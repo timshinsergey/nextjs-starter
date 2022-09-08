@@ -59,6 +59,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           TRAEFIK_DASHBOARD_LOGIN: ${{ secrets.TRAEFIK_DASHBOARD_LOGIN }}
           TRAEFIK_DASHBOARD_PASSWORD: ${{ secrets.TRAEFIK_DASHBOARD_PASSWORD }}
+          REGRU_USERNAME: ${{ secrets.REGRU_USERNAME }}
+          REGRU_PASSWORD: ${{ secrets.REGRU_PASSWORD }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: b1gke16sajj09en730l2
