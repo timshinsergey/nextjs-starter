@@ -1,23 +1,6 @@
 version: '3.9'
 
 services:
-  front:
-    image: '{{ env.IMAGE_URL }}'
-    container_name: front
-    environment:
-      ENV_VARIABLE: '{{ env.ENV_VARIABLE }}'
-      NEXT_PUBLIC_ENV_VARIABLE: '{{ env.NEXT_PUBLIC_ENV_VARIABLE }}'
-      ANALYZE: '{{ env.ANALYZE }}'
-      NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: '{{ env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}'
-    restart: always
-    # for domain connection
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.front.rule=Host(`monopomnom.ru`)
-      - traefik.http.routers.front.tls=true
-      - traefik.http.routers.front.tls.certresolver=myresolver
-      - traefik.http.routers.front.entrypoints=websecure
-      - traefik.http.services.front.loadbalancer.server.port=3000
   traefik:
     image: traefik:v2.8
     container_name: traefik
