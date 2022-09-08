@@ -30,16 +30,11 @@ services:
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
-      - --certificatesresolvers.mytlschallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      # - --certificatesresolvers.mytlschallenge.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.myresolver.acme.httpchallenge=true
       - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
       - --certificatesresolvers.myresolver.acme.email=timshinsergey1@gmail.com
       - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
-      - --certificatesresolvers.myresolver.acme.dnschallenge=true
-      - --certificatesresolvers.myresolver.acme.dnschallenge.provider=regru
-    environment:
-      REGRU_USERNAME: '{{ env.REGRU_USERNAME }}'
-      REGRU_PASSWORD: '{{ env.REGRU_PASSWORD }}'
     ports:
       - 80:80
       - 443:443
