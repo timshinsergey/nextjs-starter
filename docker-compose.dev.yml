@@ -21,8 +21,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.front.rule=Host(`next-starter.localhost`)
-      - traefik.http.middlewares.traefik-compress.compress=true
-      - traefik.http.routers.traefik.middlewares=traefik-compress
       - traefik.http.services.front.loadbalancer.server.port=3000
   traefik:
     image: traefik:v2.8
@@ -41,6 +39,4 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`dash.localhost`)
-      - traefik.http.middlewares.traefik-compress.compress=true
-      - traefik.http.routers.traefik.middlewares=traefik-compress
       - traefik.http.routers.traefik.service=api@internal

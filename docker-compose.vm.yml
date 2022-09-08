@@ -18,7 +18,6 @@ services:
       - traefik.http.routers.front.tls.certresolver=myresolver
       - traefik.http.routers.front.entrypoints=websecure
       - traefik.http.services.front.loadbalancer.server.port=3000
-      - traefik.http.middlewares.front-compress.compress=true
   traefik:
     image: traefik:v2.8
     container_name: traefik

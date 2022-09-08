@@ -16,7 +16,8 @@
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
     "tailwind": "tailwind-config-viewer -o",
-    "docker:dev": "docker compose -f docker-compose.dev.yml up -d",
+    "docker:dev:start": "docker compose -f docker-compose.dev.yml up -d",
+    "docker:dev:stop": "docker compose -f docker-compose.dev.yml down",
     "docker:clean": "docker system prune -a -f --volumes",
     "docker:down": "docker compose down"
   },
