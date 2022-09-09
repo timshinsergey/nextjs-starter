@@ -18,8 +18,7 @@
     "tailwind": "tailwind-config-viewer -o",
     "docker:dev:start": "docker compose -f docker-compose.dev.yml up -d",
     "docker:dev:stop": "docker compose -f docker-compose.dev.yml down",
-    "docker:clean": "docker system prune -a -f --volumes",
-    "docker:down": "docker compose down"
+    "docker:clean": "docker system prune -a -f --volumes"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
