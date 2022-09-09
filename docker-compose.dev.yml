@@ -23,7 +23,7 @@ services:
       - traefik.http.routers.front.rule=Host(`next-starter.localhost`)
       - traefik.http.services.front.loadbalancer.server.port=3000
   traefik:
-    image: traefik:v2.8
+    image: traefik:v2.8.4
     container_name: traefik
     command:
       - --api.insecure=true
@@ -34,9 +34,18 @@ services:
       - --entrypoints.web.address=:80
     ports:
       - 80:80
+    networks:
+      - registry_default
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`dash.localhost`)
       - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.middlewares=auth
+      # Note: all dollar signs in the hash need to be doubled for escaping.
+      # Passwords must be hashed using BCrypt.
+      - traefik.http.middlewares.auth.basicauth.users=master:$$2a$$12$$oHjf0vln2dmOInRNDhDML.eio9jBwfJmnAybMoT/Q10tIh10k0qeK
+
+networks:
+  registry_default:

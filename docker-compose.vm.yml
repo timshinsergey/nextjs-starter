@@ -50,17 +50,16 @@ services:
       - traefik.http.routers.traefik.tls.certresolver=myresolver
       - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.service=api@internal
-
       # global redirect to https
       - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
       - traefik.http.routers.http-catchall.entrypoints=web
       - traefik.http.routers.http-catchall.middlewares=redirect-to-https
-
       # middleware redirect
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
-
       #auth
       - traefik.http.routers.traefik.middlewares=auth
+      # Note: all dollar signs in the hash need to be doubled for escaping.
+      # Passwords must be hashed using BCrypt.
       - traefik.http.middlewares.auth.basicauth.users={{ env.TRAEFIK_DASHBOARD_LOGIN }}:{{ env.TRAEFIK_DASHBOARD_PASSWORD }}
 
 # Add more containers below (nginx, postgres, etc.)
