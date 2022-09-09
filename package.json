@@ -18,8 +18,7 @@
     "tailwind": "tailwind-config-viewer -o",
     "docker:dev:start": "docker compose -f docker-compose.dev.yml up -d",
     "docker:dev:stop": "docker compose -f docker-compose.dev.yml down",
-    "docker:clean": "docker system prune -a -f --volumes",
-    "docker:down": "docker compose down"
+    "docker:clean": "docker system prune -a -f --volumes"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
@@ -30,7 +29,7 @@
     "@radix-ui/react-tabs": "^0.2.0-rc.24",
     "classnames": "^2.3.1",
     "keen-slider": "^6.7.0",
-    "next": "12.2.3",
+    "next": "12.3.0",
     "next-rosetta": "^2.0.2",
     "next-seo": "^5.5.0",
     "nprogress": "^0.2.0",
