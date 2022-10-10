@@ -1,17 +1,20 @@
-import type { FC } from 'react'
+import { memo } from 'react'
 
-export interface IconProps {
+interface IconProps {
 	name: string
 	className?: string
 	section?: string
 }
 
-const Icon: FC<IconProps> = ({ name, className, section = 'common' }): JSX.Element => {
+const Icon = memo(({ name, className, section = 'common' }: IconProps): JSX.Element => {
 	return (
 		<svg className={className}>
 			<use xlinkHref={`/sprites/${section}.svg#${name.toLocaleLowerCase()}`} />
 		</svg>
 	)
-}
+})
 
-export default Icon
+Icon.displayName = 'Icon'
+
+export { Icon }
+export type { IconProps }

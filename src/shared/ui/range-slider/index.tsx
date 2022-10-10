@@ -3,10 +3,12 @@ import * as Slider from '@radix-ui/react-slider'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface RangeSliderProps extends Slider.SliderProps {}
+interface RangeSliderProps extends Slider.SliderProps {
+	defaultValue?: number[]
+}
 
-const RangeSlider = forwardRef<HTMLSpanElement, RangeSliderProps>(
-	({ defaultValue, ...props }, ref): JSX.Element => {
+const RangeSlider = memo(
+	forwardRef<HTMLSpanElement, RangeSliderProps>(({ defaultValue, ...props }, ref): JSX.Element => {
 		return (
 			<Slider.Root
 				ref={ref}
@@ -25,9 +27,10 @@ const RangeSlider = forwardRef<HTMLSpanElement, RangeSliderProps>(
 				))}
 			</Slider.Root>
 		)
-	}
+	})
 )
 
 RangeSlider.displayName = 'RangeSlider'
 
-export default memo(RangeSlider)
+export { RangeSlider }
+export type { RangeSliderProps }

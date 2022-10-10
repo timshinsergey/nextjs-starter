@@ -1,10 +1,9 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import type { ComponentProps, ElementType, ReactElement, Ref } from 'react'
 import cn from 'classnames'
-
 import s from './index.module.css'
 
-export type DefaultButtonOwnProps<E extends ElementType = ElementType> = {
+type DefaultButtonOwnProps<E extends ElementType = ElementType> = {
 	el?: E
 	variant?: 'link' | 'base' | 'primary' | 'secondary' | 'outlined' | 'custom'
 	size?: 'small' | 'medium' | 'large' | 'custom'
@@ -47,4 +46,5 @@ const DefaultButton: <E extends ElementType = typeof defaultElement>(
 	)
 })
 
-export default DefaultButton
+export { DefaultButton }
+export type { DefaultButtonOwnProps }
