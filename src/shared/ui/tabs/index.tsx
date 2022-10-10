@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import cn from 'classnames'
 import s from './index.module.css'
@@ -12,19 +12,19 @@ export interface TabsItemProps extends Tabs.TabsTriggerProps {}
 
 export interface TabsContentProps extends Tabs.TabsContentProps {}
 
-const TabsItem: FC<TabsItemProps> = ({ ...props }): JSX.Element => {
+const TabsItem = ({ ...props }: TabsItemProps): JSX.Element => {
 	return <Tabs.Trigger {...props} />
 }
 
-const TabsContent: FC<TabsContentProps> = ({ ...props }): JSX.Element => {
+const TabsContent = ({ ...props }: TabsContentProps): JSX.Element => {
 	return <Tabs.Content {...props} />
 }
 
-const TabsRoot: FC<TabsRootProps> = ({
+const TabsRoot = ({
 	triggerChildren,
 	contentChildren,
 	...props
-}): JSX.Element => {
+}: TabsRootProps): JSX.Element => {
 	return (
 		<Tabs.Root {...props}>
 			<Tabs.List>{triggerChildren}</Tabs.List>

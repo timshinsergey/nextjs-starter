@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import type { FC } from 'react'
 import cn from 'classnames'
 import Icon from '@shared/ui/icon'
 import s from './index.module.css'
@@ -10,7 +9,7 @@ export interface SocialMediaProps {
 	size?: 'small' | 'medium' | 'large' | 'custom'
 }
 
-const SocialMedia: FC<SocialMediaProps> = ({ className, size = 'small' }): JSX.Element => {
+const SocialMedia = ({ className, size = 'small' }: SocialMediaProps): JSX.Element => {
 	return (
 		<div className={cn(className, 'grid grid-flow-col gap-2')}>
 			{data.map((item) => (

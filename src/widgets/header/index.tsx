@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import cn from 'classnames'
@@ -6,7 +5,7 @@ import s from './index.module.css'
 
 export interface HeaderProps {}
 
-const Header: FC<HeaderProps> = ({}): JSX.Element => {
+const Header = ({}: HeaderProps): JSX.Element => {
 	const router = useRouter()
 
 	return (

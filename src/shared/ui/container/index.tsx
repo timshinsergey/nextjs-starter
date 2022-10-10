@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import type { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
+import type { ReactNode, ComponentType, HTMLAttributes } from 'react'
 import cn from 'classnames'
 
 export interface ContainerProps {
@@ -9,12 +9,12 @@ export interface ContainerProps {
 	noPadding?: boolean
 }
 
-const Container: FC<ContainerProps> = ({
+const Container = ({
 	children,
 	el: Component = 'div',
 	className,
 	noPadding,
-}): JSX.Element => {
+}: ContainerProps): JSX.Element => {
 	return (
 		<Component
 			className={cn(className, 'container', {

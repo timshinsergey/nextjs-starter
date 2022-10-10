@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
@@ -6,7 +6,7 @@ import s from './index.module.css'
 
 export interface Custom404PageProps extends HTMLAttributes<HTMLDivElement> {}
 
-const Custom404Page: FC<Custom404PageProps> = ({ className, ...props }): JSX.Element => {
+const Custom404Page = ({ className, ...props }: Custom404PageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 

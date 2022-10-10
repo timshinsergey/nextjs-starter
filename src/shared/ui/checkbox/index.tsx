@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import type { FC } from 'react'
 import * as RadixCheckbox from '@radix-ui/react-checkbox'
 import cn from 'classnames'
 import s from './index.module.css'
@@ -12,14 +11,14 @@ export interface CheckboxProps extends RadixCheckbox.CheckboxProps {
 	) => void
 }
 
-const Checkbox: FC<CheckboxProps> = ({
+const Checkbox = ({
 	id,
 	className,
 	value,
 	text,
 	onValueChange,
 	...props
-}): JSX.Element => {
+}: CheckboxProps): JSX.Element => {
 	const handleValueChange = useCallback(
 		(checked: RadixCheckbox.CheckedState) => {
 			if (onValueChange) {

@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react'
-import type { ButtonHTMLAttributes, FC } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import cn from 'classnames'
@@ -54,7 +54,7 @@ const SliderBtn = forwardRef<HTMLButtonElement, SliderBtnProps>(
 
 SliderBtn.displayName = 'SliderBtn'
 
-const Slider: FC<SliderProps> = ({
+const Slider = ({
 	loop,
 	arrows,
 	dots,
@@ -67,7 +67,7 @@ const Slider: FC<SliderProps> = ({
 	autoSwitch,
 	autoSwitchDelay = 2000,
 	...options
-}): JSX.Element => {
+}: SliderProps): JSX.Element => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
@@ -137,7 +137,7 @@ const Slider: FC<SliderProps> = ({
 	)
 }
 
-const Slide: FC<SlideProps> = ({ children, className }): JSX.Element => {
+const Slide = ({ children, className }: SlideProps): JSX.Element => {
 	return <div className={cn(className, 'keen-slider__slide')}>{children}</div>
 }
 

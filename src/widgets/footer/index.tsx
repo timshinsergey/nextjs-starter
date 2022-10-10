@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import Image from 'next/image'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
@@ -7,7 +6,7 @@ import s from './index.module.css'
 
 export interface FooterProps {}
 
-const Footer: FC<FooterProps> = ({}): JSX.Element => {
+const Footer = ({}: FooterProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 

@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 
 export interface IconProps {
 	name: string
@@ -6,7 +5,7 @@ export interface IconProps {
 	section?: string
 }
 
-const Icon: FC<IconProps> = ({ name, className, section = 'common' }): JSX.Element => {
+const Icon = ({ name, className, section = 'common' }: IconProps): JSX.Element => {
 	return (
 		<svg className={className}>
 			<use xlinkHref={`/sprites/${section}.svg#${name.toLocaleLowerCase()}`} />

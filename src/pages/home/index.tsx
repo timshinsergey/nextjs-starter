@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import Link from 'next/link'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
@@ -7,7 +6,7 @@ import s from './index.module.css'
 
 export interface HomePageProps {}
 
-const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
+const HomePage = ({}: HomePageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 

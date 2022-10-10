@@ -1,5 +1,4 @@
 import { forwardRef } from 'react'
-import type { FC } from 'react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import cn from 'classnames'
 import s from './index.module.css'
@@ -40,7 +39,7 @@ const RadioItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
 
 RadioItem.displayName = 'RadioItem'
 
-const Radio: FC<RadioGroupProps> = ({ children, ...props }): JSX.Element => {
+const Radio = ({ children, ...props }: RadioGroupProps): JSX.Element => {
 	return <RadioGroup.Root {...props}>{children}</RadioGroup.Root>
 }
 

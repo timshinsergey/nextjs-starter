@@ -1,4 +1,4 @@
-import type { ReactNode, FC, ComponentType, HTMLAttributes } from 'react'
+import type { ReactNode, ComponentType, HTMLAttributes } from 'react'
 import cn from 'classnames'
 
 export interface TypographyProps extends HTMLAttributes<HTMLHeadingElement> {
@@ -8,14 +8,14 @@ export interface TypographyProps extends HTMLAttributes<HTMLHeadingElement> {
 	truncate?: boolean
 }
 
-const Typography: FC<TypographyProps> = ({
+const Typography = ({
 	children,
 	variant = 'p',
 	el: Component = 'p',
 	truncate,
 	className,
 	...props
-}): JSX.Element => {
+}: TypographyProps): JSX.Element => {
 	return (
 		<Component
 			className={cn(

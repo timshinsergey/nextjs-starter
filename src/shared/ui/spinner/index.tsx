@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 
@@ -8,11 +7,11 @@ export interface SpinnerProps {
 	ariaLabelledby?: string
 }
 
-const Spinner: FC<SpinnerProps> = ({
+const Spinner = ({
 	rootClassNames,
 	svgClassNames = 'w-4 h-4 text-white',
 	ariaLabelledby,
-}): JSX.Element => {
+}: SpinnerProps): JSX.Element => {
 	return (
 		<span
 			role='progressbar'
