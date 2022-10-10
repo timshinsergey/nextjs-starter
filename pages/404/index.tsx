@@ -3,8 +3,8 @@ import type { GetStaticProps } from 'next'
 import type { I18nProps } from 'next-rosetta'
 import type { SiteLocale } from '@shared/i18n'
 import type { NextPageWithLayout } from '@rootPages/_app'
-import Layout from '@widgets/layout'
-import Custom404Page from '@pages/404/index'
+import { Layout } from '@widgets/layout'
+import { Custom404Page } from '@pages/404/index'
 
 const Custom_404: NextPageWithLayout = () => <Custom404Page />
 

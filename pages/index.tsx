@@ -1,12 +1,12 @@
 import type { ReactElement } from 'react'
 import type { GetStaticProps } from 'next'
 import type { I18nProps } from 'next-rosetta'
-import { useI18n } from 'next-rosetta'
-import { NextSeo } from 'next-seo'
 import type { SiteLocale } from '@shared/i18n'
 import type { NextPageWithLayout } from 'pages/_app'
-import Layout from '@widgets/layout'
-import HomePage from '@pages/home'
+import { useI18n } from 'next-rosetta'
+import { NextSeo } from 'next-seo'
+import { Layout } from '@widgets/layout'
+import { HomePage } from '@pages/home'
 
 const Home: NextPageWithLayout = () => {
 	console.log('mounted')
