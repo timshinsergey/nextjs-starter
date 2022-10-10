@@ -2,10 +2,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import cn from 'classnames'
 import s from './index.module.css'
+import { memo } from 'react'
 
-export interface HeaderProps {}
+interface HeaderProps {}
 
-const Header = ({}: HeaderProps): JSX.Element => {
+const Header = memo(({}: HeaderProps): JSX.Element => {
 	const router = useRouter()
 
 	return (
@@ -19,6 +20,9 @@ const Header = ({}: HeaderProps): JSX.Element => {
 			))}
 		</header>
 	)
-}
+})
 
-export default Header
+Header.displayName = 'Header'
+
+export { Header }
+export type { HeaderProps }

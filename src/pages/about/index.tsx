@@ -5,7 +5,7 @@ import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface AboutPageProps extends HTMLAttributes<HTMLDivElement> {}
+interface AboutPageProps extends HTMLAttributes<HTMLDivElement> {}
 
 const AboutPage = ({ className, ...props }: AboutPageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
@@ -21,4 +21,5 @@ const AboutPage = ({ className, ...props }: AboutPageProps): JSX.Element => {
 	)
 }
 
-export default AboutPage
+export { AboutPage }
+export type { AboutPageProps }

@@ -4,7 +4,7 @@ import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface HomePageProps {}
+interface HomePageProps {}
 
 const HomePage = ({}: HomePageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
@@ -56,4 +56,5 @@ const HomePage = ({}: HomePageProps): JSX.Element => {
 	)
 }
 
-export default HomePage
+export { HomePage }
+export type { HomePageProps }

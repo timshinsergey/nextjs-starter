@@ -6,16 +6,19 @@ import type { HTMLAttributes } from 'react'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface <%= h.changeCase.pascal(name) %>Props extends HTMLAttributes<HTMLDivElement> {}
+interface <%= h.changeCase.pascal(name) %>Props extends HTMLAttributes<HTMLDivElement> {}
 
-const <%= h.changeCase.pascal(name) %> = ({ className, ...props }: <%= h.changeCase.pascal(name) %>Props): JSX.Element => {
+const <%= h.changeCase.pascal(name) %> = memo(({ className, ...props }: <%= h.changeCase.pascal(name) %>Props): JSX.Element => {
   return (
     <div className={cn(s.component, className)} {...props}>
       <%= h.changeCase.pascal(name) %>
     </div>
   )
-}
+})
+
+<%= h.changeCase.pascal(name) %>.displayName = '<%= h.changeCase.pascal(name) %>'
 
 // If you leave memo, the i18n texts
 // will not be displayed when switching languages
-export default memo(<%= h.changeCase.pascal(name) %>)
+export { <%= h.changeCase.pascal(name) %> }
+export type { <%= h.changeCase.pascal(name) %>Props }

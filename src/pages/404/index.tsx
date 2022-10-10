@@ -4,7 +4,7 @@ import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface Custom404PageProps extends HTMLAttributes<HTMLDivElement> {}
+interface Custom404PageProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Custom404Page = ({ className, ...props }: Custom404PageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
@@ -17,4 +17,5 @@ const Custom404Page = ({ className, ...props }: Custom404PageProps): JSX.Element
 	)
 }
 
-export default Custom404Page
+export { Custom404Page }
+export type { Custom404PageProps }

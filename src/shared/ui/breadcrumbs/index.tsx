@@ -3,7 +3,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface BreadcrumbsProps {
+interface BreadcrumbsProps {
 	list: { text: string; url?: string }[]
 }
 
@@ -25,7 +25,7 @@ const Separator = ({ className }: { className?: string }): JSX.Element => (
 	</svg>
 )
 
-const Breadcrumbs = ({ list }: BreadcrumbsProps): JSX.Element => {
+const Breadcrumbs = memo(({ list }: BreadcrumbsProps): JSX.Element => {
 	return (
 		<ol
 			className='my-2 grid grid-flow-col justify-start text-sm lg:text-lg'
@@ -58,6 +58,9 @@ const Breadcrumbs = ({ list }: BreadcrumbsProps): JSX.Element => {
 			))}
 		</ol>
 	)
-}
+})
 
-export default memo(Breadcrumbs)
+Breadcrumbs.displayName = 'Breadcrumbs'
+
+export { Breadcrumbs }
+export type { BreadcrumbsProps }

@@ -4,7 +4,7 @@ import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface Custom500PageProps extends HTMLAttributes<HTMLDivElement> {}
+interface Custom500PageProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Custom500Page = ({ className, ...props }: Custom500PageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
@@ -17,4 +17,5 @@ const Custom500Page = ({ className, ...props }: Custom500PageProps): JSX.Element
 	)
 }
 
-export default Custom500Page
+export { Custom500Page }
+export type { Custom500PageProps }

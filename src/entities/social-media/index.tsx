@@ -1,15 +1,15 @@
 import { memo } from 'react'
 import cn from 'classnames'
-import Icon from '@shared/ui/icon'
+import { Icon } from '@shared/ui/icon'
 import s from './index.module.css'
 import data from './data.json'
 
-export interface SocialMediaProps {
+interface SocialMediaProps {
 	className?: string
 	size?: 'small' | 'medium' | 'large' | 'custom'
 }
 
-const SocialMedia = ({ className, size = 'small' }: SocialMediaProps): JSX.Element => {
+const SocialMedia = memo(({ className, size = 'small' }: SocialMediaProps): JSX.Element => {
 	return (
 		<div className={cn(className, 'grid grid-flow-col gap-2')}>
 			{data.map((item) => (
@@ -30,6 +30,9 @@ const SocialMedia = ({ className, size = 'small' }: SocialMediaProps): JSX.Eleme
 			))}
 		</div>
 	)
-}
+})
 
-export default memo(SocialMedia)
+SocialMedia.displayName = 'SocialMedia'
+
+export { SocialMedia }
+export type { SocialMediaProps }

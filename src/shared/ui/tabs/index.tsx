@@ -1,36 +1,40 @@
 import type { ReactNode } from 'react'
+import { memo } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface TabsRootProps extends Tabs.TabsProps {
+interface TabsRootProps extends Tabs.TabsProps {
 	triggerChildren: ReactNode | ReactNode[]
 	contentChildren: ReactNode | ReactNode[]
 }
 
-export interface TabsItemProps extends Tabs.TabsTriggerProps {}
+interface TabsItemProps extends Tabs.TabsTriggerProps {}
 
-export interface TabsContentProps extends Tabs.TabsContentProps {}
+interface TabsContentProps extends Tabs.TabsContentProps {}
 
-const TabsItem = ({ ...props }: TabsItemProps): JSX.Element => {
+const TabsItem = memo(({ ...props }: TabsItemProps): JSX.Element => {
 	return <Tabs.Trigger {...props} />
-}
+})
 
-const TabsContent = ({ ...props }: TabsContentProps): JSX.Element => {
+const TabsContent = memo(({ ...props }: TabsContentProps): JSX.Element => {
 	return <Tabs.Content {...props} />
-}
+})
 
-const TabsRoot = ({
-	triggerChildren,
-	contentChildren,
-	...props
-}: TabsRootProps): JSX.Element => {
-	return (
-		<Tabs.Root {...props}>
-			<Tabs.List>{triggerChildren}</Tabs.List>
-			{contentChildren}
-		</Tabs.Root>
-	)
-}
+const TabsRoot = memo(
+	({ triggerChildren, contentChildren, ...props }: TabsRootProps): JSX.Element => {
+		return (
+			<Tabs.Root {...props}>
+				<Tabs.List>{triggerChildren}</Tabs.List>
+				{contentChildren}
+			</Tabs.Root>
+		)
+	}
+)
+
+TabsItem.displayName = 'TabsItem'
+TabsContent.displayName = 'TabsContent'
+TabsRoot.displayName = 'TabsRoot'
 
 export { TabsItem, TabsContent, TabsRoot }
+export type { TabsRootProps, TabsItemProps, TabsContentProps }
