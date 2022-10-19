@@ -3,12 +3,20 @@ import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
+import showToast from '@shared/ui/toast/show-toast'
 
 interface HomePageProps {}
 
 const HomePage = ({}: HomePageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
+
+	const handleShowToast = () => {
+		showToast({
+			message: 'Ok',
+			variant: 'success',
+		})
+	}
 
 	return (
 		<div className='container mx-auto px-8'>
@@ -50,6 +58,7 @@ const HomePage = ({}: HomePageProps): JSX.Element => {
 						<h2>{t('home.links.four.title')} &rarr;</h2>
 						<p>{t('home.links.four.description')}</p>
 					</a>
+					<button onClick={handleShowToast}>Show toas</button>
 				</div>
 			</main>
 		</div>
