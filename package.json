@@ -40,7 +40,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@statoscope/webpack-plugin": "^5.24.0",
-    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
