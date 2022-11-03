@@ -34,8 +34,6 @@ services:
       - --entrypoints.web.address=:80
     ports:
       - 80:80
-    networks:
-      - registry_default
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
@@ -46,6 +44,3 @@ services:
       # Note: all dollar signs in the hash need to be doubled for escaping.
       # Passwords must be hashed using BCrypt.
       - traefik.http.middlewares.auth.basicauth.users=master:$$2a$$12$$oHjf0vln2dmOInRNDhDML.eio9jBwfJmnAybMoT/Q10tIh10k0qeK
-
-networks:
-  registry_default:
