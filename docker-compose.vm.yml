@@ -10,22 +10,5 @@ services:
       ANALYZE: '{{ env.ANALYZE }}'
       NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: '{{ env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}'
     restart: always
-    # for domain connection
-    labels:
-      - traefik.enable=true
-      - traefik.http.services.front.loadbalancer.server.port=3000
-  traefik:
-    image: traefik:v2.9.4
-    container_name: traefik
-    command:
-      - --api=true
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:80
     ports:
-      - 80:80
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.traefik.service=api@internal
+      - 3000:3000
