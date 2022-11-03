@@ -9,7 +9,7 @@ import { Layout } from '@widgets/layout'
 import { HomePage } from '@pages/home'
 
 const Home: NextPageWithLayout = () => {
-	console.log('mounted')
+	console.log('mounted!')
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
