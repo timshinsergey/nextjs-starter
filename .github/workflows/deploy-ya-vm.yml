@@ -65,8 +65,8 @@ jobs:
           vm-name: ${{ env.VM_NAME}}
           vm-service-account-id: ajeeshqgd7ku5q8128ju
           vm-cores: 2
-          vm-memory: 1 GB
-          vm-core-fraction: 20
+          vm-memory: 2 GB
+          vm-core-fraction: 50
           vm-zone-id: ru-central1-b
           vm-subnet-id: e2legjppt5nu2h203b1j
           user-data-path: './user-data.yml'
