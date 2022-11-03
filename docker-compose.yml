@@ -2,12 +2,13 @@ version: '3.9'
 
 services:
   front:
-    image: { { env.FRONT_IMAGE_URL } }
+    image: '{{ env.IMAGE_URL }}'
     container_name: front
-    build:
-      args:
-        ENV_VARIABLE: { { env.ENV_VARIABLE } }
-        NEXT_PUBLIC_ENV_VARIABLE: { { env.NEXT_PUBLIC_ENV_VARIABLE } }
+    environment:
+      ENV_VARIABLE: '{{ env.ENV_VARIABLE }}'
+      NEXT_PUBLIC_ENV_VARIABLE: '{{ env.NEXT_PUBLIC_ENV_VARIABLE }}'
+      ANALYZE: '{{ env.ANALYZE }}'
+      NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: '{{ env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}'
     restart: always
     ports:
-      - 3000:3000
+      - '3000:3000'

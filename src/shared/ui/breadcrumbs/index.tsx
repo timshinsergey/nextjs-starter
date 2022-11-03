@@ -1,14 +1,13 @@
 import { memo } from 'react'
-import type { FC } from 'react'
 import Link from 'next/link'
 import cn from 'classnames'
 import s from './index.module.css'
 
-export interface BreadcrumbsProps {
+interface BreadcrumbsProps {
 	list: { text: string; url?: string }[]
 }
 
-const Separator: FC<{ className?: string }> = ({ className }): JSX.Element => (
+const Separator = ({ className }: { className?: string }): JSX.Element => (
 	<svg
 		width='5'
 		height='5'
@@ -26,7 +25,7 @@ const Separator: FC<{ className?: string }> = ({ className }): JSX.Element => (
 	</svg>
 )
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ list }): JSX.Element => {
+const Breadcrumbs = memo(({ list }: BreadcrumbsProps): JSX.Element => {
 	return (
 		<ol
 			className='my-2 grid grid-flow-col justify-start text-sm lg:text-lg'
@@ -59,6 +58,9 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ list }): JSX.Element => {
 			))}
 		</ol>
 	)
-}
+})
 
-export default memo(Breadcrumbs)
+Breadcrumbs.displayName = 'Breadcrumbs'
+
+export { Breadcrumbs }
+export type { BreadcrumbsProps }

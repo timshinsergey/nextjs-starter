@@ -1,15 +1,13 @@
-import { forwardRef, useState } from 'react'
-import type { ButtonHTMLAttributes, FC } from 'react'
+import { forwardRef, useState, memo } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import cn from 'classnames'
-
-import Icon from '../icon'
-
+import { Icon } from '../icon'
 import s from './index.module.css'
 import autoSwitchInit from './auto-switch'
 
-export interface SliderProps extends KeenSliderOptions {
+interface SliderProps extends KeenSliderOptions {
 	children: JSX.Element | JSX.Element[]
 	className?: string
 	btnPrevClassName?: string
@@ -22,7 +20,7 @@ export interface SliderProps extends KeenSliderOptions {
 	autoSwitchDelay?: number
 }
 
-export interface SlideProps {
+interface SlideProps {
 	children: JSX.Element | JSX.Element[]
 	className?: string
 }
@@ -32,113 +30,122 @@ interface SliderBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	btnIconClassName?: string
 }
 
-const SliderBtn = forwardRef<HTMLButtonElement, SliderBtnProps>(
-	({ iconName, className, btnIconClassName, ...props }, ref): JSX.Element => {
+const SliderBtn = memo(
+	forwardRef<HTMLButtonElement, SliderBtnProps>(
+		({ iconName, className, btnIconClassName, ...props }, ref): JSX.Element => {
+			return (
+				<button
+					ref={ref}
+					className={cn(
+						className,
+						'absolute z-10 top-1/2 -translate-y-1/2 h-8 w-8 rounded inline-flex items-center justify-center bg-black dark:bg-blue-500 lg:h-11 lg:w-11 disabled:opacity-30'
+					)}
+					{...props}
+				>
+					<Icon
+						name={iconName}
+						className={cn(btnIconClassName, 'h-3 w-3 text-white lg:h-4 lg:w-4')}
+					/>
+				</button>
+			)
+		}
+	)
+)
+
+const Slider = memo(
+	({
+		loop,
+		arrows,
+		dots,
+		children,
+		className,
+		btnPrevClassName,
+		btnNextClassName,
+		btnIconClassName,
+		dotsClassName,
+		autoSwitch,
+		autoSwitchDelay = 2000,
+		...options
+	}: SliderProps): JSX.Element => {
+		const [currentSlide, setCurrentSlide] = useState(0)
+		const [loaded, setLoaded] = useState(false)
+		const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+			{
+				slideChanged(slider) {
+					setCurrentSlide(slider.track.details.rel)
+				},
+				created() {
+					setLoaded(true)
+				},
+				...options,
+				loop,
+			},
+			[
+				(slider) => {
+					if (autoSwitch) {
+						autoSwitchInit(slider, autoSwitchDelay)
+					}
+				},
+			]
+		)
+
 		return (
-			<button
-				ref={ref}
-				className={cn(
-					className,
-					'absolute z-10 top-1/2 -translate-y-1/2 h-8 w-8 rounded inline-flex items-center justify-center bg-black dark:bg-blue-500 lg:h-11 lg:w-11 disabled:opacity-30'
+			<div className={cn(s.root, 'relative')}>
+				<div ref={sliderRef} className={cn(className, 'keen-slider')}>
+					{children}
+				</div>
+
+				{loaded && arrows && instanceRef.current && (
+					<>
+						<SliderBtn
+							onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
+							disabled={!loop && currentSlide === 0}
+							aria-label='Предыдущий слайд'
+							className={cn(btnPrevClassName, 'left-0')}
+							iconName='arrow-left'
+							btnIconClassName={btnIconClassName}
+						/>
+						<SliderBtn
+							onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
+							disabled={!loop && currentSlide === instanceRef.current.track.details.maxIdx}
+							aria-label='Следующий слайд'
+							className={cn(btnNextClassName, 'right-0')}
+							iconName='arrow-right'
+							btnIconClassName={btnIconClassName}
+						/>
+					</>
 				)}
-				{...props}
-			>
-				<Icon
-					name={iconName}
-					className={cn(btnIconClassName, 'h-3 w-3 text-white lg:h-4 lg:w-4')}
-				/>
-			</button>
+
+				{loaded && dots && instanceRef.current && (
+					<div
+						className={cn(dotsClassName, 'grid grid-flow-col items-center justify-center gap-6')}
+					>
+						{[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => (
+							<button
+								key={idx}
+								onClick={() => {
+									instanceRef.current?.moveToIdx(idx)
+								}}
+								className={cn('bg-zinc-400 h-1 rounded-full', {
+									['bg-primary w-4']: currentSlide === idx,
+									['w-1']: currentSlide !== idx,
+								})}
+							></button>
+						))}
+					</div>
+				)}
+			</div>
 		)
 	}
 )
 
-SliderBtn.displayName = 'SliderBtn'
-
-const Slider: FC<SliderProps> = ({
-	loop,
-	arrows,
-	dots,
-	children,
-	className,
-	btnPrevClassName,
-	btnNextClassName,
-	btnIconClassName,
-	dotsClassName,
-	autoSwitch,
-	autoSwitchDelay = 2000,
-	...options
-}): JSX.Element => {
-	const [currentSlide, setCurrentSlide] = useState(0)
-	const [loaded, setLoaded] = useState(false)
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
-		{
-			slideChanged(slider) {
-				setCurrentSlide(slider.track.details.rel)
-			},
-			created() {
-				setLoaded(true)
-			},
-			...options,
-			loop,
-		},
-		[
-			(slider) => {
-				if (autoSwitch) {
-					autoSwitchInit(slider, autoSwitchDelay)
-				}
-			},
-		]
-	)
-
-	return (
-		<div className={cn(s.root, 'relative')}>
-			<div ref={sliderRef} className={cn(className, 'keen-slider')}>
-				{children}
-			</div>
-
-			{loaded && arrows && instanceRef.current && (
-				<>
-					<SliderBtn
-						onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
-						disabled={!loop && currentSlide === 0}
-						aria-label='Предыдущий слайд'
-						className={cn(btnPrevClassName, 'left-0')}
-						iconName='arrow-left'
-						btnIconClassName={btnIconClassName}
-					/>
-					<SliderBtn
-						onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
-						disabled={!loop && currentSlide === instanceRef.current.track.details.maxIdx}
-						aria-label='Следующий слайд'
-						className={cn(btnNextClassName, 'right-0')}
-						iconName='arrow-right'
-						btnIconClassName={btnIconClassName}
-					/>
-				</>
-			)}
-
-			{loaded && dots && instanceRef.current && (
-				<div className={cn(dotsClassName, 'grid grid-flow-col items-center justify-center gap-6')}>
-					{[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => (
-						<button
-							key={idx}
-							onClick={() => {
-								instanceRef.current?.moveToIdx(idx)
-							}}
-							className={cn('bg-zinc-400 h-1 rounded-full', {
-								['bg-primary w-4']: currentSlide === idx,
-								['w-1']: currentSlide !== idx,
-							})}
-						></button>
-					))}
-				</div>
-			)}
-		</div>
-	)
-}
-
-const Slide: FC<SlideProps> = ({ children, className }): JSX.Element => {
+const Slide = memo(({ children, className }: SlideProps): JSX.Element => {
 	return <div className={cn(className, 'keen-slider__slide')}>{children}</div>
-}
+})
+
+SliderBtn.displayName = 'SliderBtn'
+Slider.displayName = 'Slider'
+Slide.displayName = 'Slide'
 
 export { Slider, Slide }
+export type { SliderProps, SlideProps }

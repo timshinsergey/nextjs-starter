@@ -1,15 +1,16 @@
 ---
 to: src/pages<%= path %>.tsx
 ---
-import type { FC, HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
+import type { SiteLocale } from '@shared/i18n'
+import { memo } from 'react'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
-import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface <%= h.changeCase.pascal(name) %>PageProps extends HTMLAttributes<HTMLDivElement> {}
+interface <%= h.changeCase.pascal(name) %>PageProps extends HTMLAttributes<HTMLDivElement> {}
 
-const <%= h.changeCase.pascal(name) %>Page: FC<<%= h.changeCase.pascal(name) %>PageProps> = ({ className, ...props }): JSX.Element => {
+const <%= h.changeCase.pascal(name) %>Page = memo(({ className, ...props }: <%= h.changeCase.pascal(name) %>PageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
@@ -18,6 +19,9 @@ const <%= h.changeCase.pascal(name) %>Page: FC<<%= h.changeCase.pascal(name) %>P
       {t('<%=h.changeCase.lowerCase(name)%>.hero.title')}
     </div>
 	)
-}
+})
 
-export default <%= h.changeCase.pascal(name) %>Page
+<%= h.changeCase.pascal(name) %>Page.displayName = '<%= h.changeCase.pascal(name) %>Page'
+
+export { <%= h.changeCase.pascal(name) %>Page }
+export type { <%= h.changeCase.pascal(name) %>PageProps }

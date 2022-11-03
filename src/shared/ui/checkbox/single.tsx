@@ -1,12 +1,8 @@
-import { forwardRef, memo, useCallback } from 'react'
+import { forwardRef, memo } from 'react'
 import * as RadixCheckbox from '@radix-ui/react-checkbox'
 import cn from 'classnames'
-import s from './index.module.css'
 
-interface CheckboxProps extends RadixCheckbox.CheckboxProps {
-	id: string
-	className?: string
-	value?: string | number | readonly string[]
+interface SingleCheckboxProps extends RadixCheckbox.CheckboxProps {
 	text?: string
 	onValueChange?: (
 		value: string | number | readonly string[] | undefined,
@@ -19,15 +15,14 @@ interface CheckboxProps extends RadixCheckbox.CheckboxProps {
 	variant?: 'primary' | 'custom'
 }
 
-const Checkbox = memo(
-	forwardRef<HTMLButtonElement, CheckboxProps>(
+const SingleCheckbox = memo(
+	forwardRef<HTMLButtonElement, SingleCheckboxProps>(
 		(
 			{
 				id,
 				className,
 				value,
 				text,
-				onValueChange,
 				labelClassName,
 				labelBottomLeft,
 				labelBottomLeftClassName,
@@ -37,15 +32,6 @@ const Checkbox = memo(
 			},
 			ref
 		): JSX.Element => {
-			const handleValueChange = useCallback(
-				(checked: RadixCheckbox.CheckedState) => {
-					if (onValueChange) {
-						onValueChange(value, checked)
-					}
-				},
-				[onValueChange, value]
-			)
-
 			return (
 				<div>
 					<div className='grid grid-flow-col items-center justify-start gap-2'>
@@ -54,7 +40,6 @@ const Checkbox = memo(
 							ref={ref}
 							value={value}
 							id={id}
-							onCheckedChange={handleValueChange}
 							className={cn(
 								className,
 								'bg-transparent rounded h-4 w-4 inline-flex items-center justify-center border border-current [&:data-state="checked"]:translate-x-2'
@@ -97,7 +82,7 @@ const Checkbox = memo(
 	)
 )
 
-Checkbox.displayName = 'Checkbox'
+SingleCheckbox.displayName = 'SingleCheckbox'
 
-export { Checkbox }
-export type { CheckboxProps }
+export { SingleCheckbox }
+export type { SingleCheckboxProps }

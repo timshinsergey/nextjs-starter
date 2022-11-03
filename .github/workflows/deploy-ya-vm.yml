@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy to YA sls container
+name: Deploy to YA vm
 
 # Controls when the workflow will run
 on:
@@ -16,12 +16,13 @@ on:
 env:
   CR_HOST: cr.yandex
   CR_IMAGE: next-starter
-  SC_NAME: next-starter
+  VM_NAME: next-starter
   CR_REPOSITORY: crpsekeafeo0j7cjq530
   CR_URL: $CR_HOST/$CR_REPOSITORY/$CR_IMAGE
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -35,6 +36,7 @@ jobs:
         uses: yc-actions/yc-cr-login@v1
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
       - name: Build, tag, and push front image to Yandex Cloud Container Registry
         run: |
           docker build -t ${{ env.CR_URL}}:${{ github.sha }} .
@@ -45,22 +47,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy Serverless Container
-        id: deploy-sls-container
-        uses: yc-actions/yc-sls-container-deploy@v2
+      - name: Deploy COI VM
+        id: deploy-coi
+        uses: yc-actions/yc-coi-deploy@v1
+        env:
+          ENV_VARIABLE: ${{ secrets.ENV_VARIABLE }}
+          NEXT_PUBLIC_ENV_VARIABLE: ${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
+          ANALYZE: ${{ secrets.ANALYZE }}
+          NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
+          IMAGE_URL: ${{ env.CR_HOST }}/${{ env.CR_REPOSITORY }}/${{ env.CR_IMAGE }}:${{ github.sha }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          TRAEFIK_DASHBOARD_LOGIN: ${{ secrets.TRAEFIK_DASHBOARD_LOGIN }}
+          TRAEFIK_DASHBOARD_PASSWORD: ${{ secrets.TRAEFIK_DASHBOARD_PASSWORD }}
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-          container-name: ${{ env.SC_NAME}}
           folder-id: b1gke16sajj09en730l2
-          revision-service-account-id: ajeeshqgd7ku5q8128ju
-          revision-cores: 1
-          revision-memory: 128Mb
-          revision-core-fraction: 5
-          revision-concurrency: 8
-          revision-image-url: ${{ env.CR_HOST}}/${{ env.CR_REPOSITORY}}/${{ env.CR_IMAGE}}:${{ github.sha }}
-          revision-env: |
-            ENV_VARIABLE=${{ secrets.ENV_VARIABLE }}
-            NEXT_PUBLIC_ENV_VARIABLE=${{ secrets.NEXT_PUBLIC_ENV_VARIABLE }}
-            ANALYZE=${{ secrets.ANALYZE }}
-            NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
-          revision-execution-timeout: 10
+          vm-name: ${{ env.VM_NAME}}
+          vm-service-account-id: ajeeshqgd7ku5q8128ju
+          vm-cores: 2
+          vm-memory: 2 GB
+          vm-core-fraction: 50
+          vm-zone-id: ru-central1-b
+          vm-subnet-id: e2legjppt5nu2h203b1j
+          user-data-path: './user-data.yml'
+          docker-compose-path: './docker-compose.vm.yml'

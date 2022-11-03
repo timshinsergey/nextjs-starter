@@ -1,12 +1,13 @@
-import type { FC, ReactNode } from 'react'
-import Header from '@widgets/header'
-import Footer from '@widgets/footer'
+import type { ReactNode } from 'react'
+import { memo } from 'react'
+import { Header } from '@widgets/header'
+import { Footer } from '@widgets/footer'
 
-export interface LayoutProps {
+interface LayoutProps {
 	children: ReactNode
 }
 
-const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
+const Layout = memo(({ children }: LayoutProps): JSX.Element => {
 	return (
 		<>
 			<Header />
@@ -14,6 +15,9 @@ const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
 			<Footer />
 		</>
 	)
-}
+})
 
-export default Layout
+Layout.displayName = 'Layout'
+
+export { Layout }
+export type { LayoutProps }

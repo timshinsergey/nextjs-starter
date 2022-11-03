@@ -1,5 +1,5 @@
 {
-  "name": "taboo-front",
+  "name": "nextjs-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,10 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
-    "tailwind": "tailwind-config-viewer -o"
+    "tailwind": "tailwind-config-viewer -o",
+    "docker:dev:start": "docker compose -f docker-compose.dev.yml up -d",
+    "docker:dev:stop": "docker compose -f docker-compose.dev.yml down",
+    "docker:clean": "docker system prune -a -f --volumes"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^0.1.6-rc.44",
@@ -31,10 +34,12 @@
     "next-seo": "^5.5.0",
     "nprogress": "^0.2.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
+    "@statoscope/webpack-plugin": "^5.24.0",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",

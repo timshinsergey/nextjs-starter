@@ -1,13 +1,13 @@
-import { FC } from 'react'
+import { memo } from 'react'
 import Image from 'next/image'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
 
-export interface FooterProps {}
+interface FooterProps {}
 
-const Footer: FC<FooterProps> = ({}): JSX.Element => {
+const Footer = memo(({}: FooterProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
 
@@ -28,6 +28,9 @@ const Footer: FC<FooterProps> = ({}): JSX.Element => {
 			</footer>
 		</div>
 	)
-}
+})
 
-export default Footer
+Footer.displayName = 'Footer'
+
+export { Footer }
+export type { FooterProps }

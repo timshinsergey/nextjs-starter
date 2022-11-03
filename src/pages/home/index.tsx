@@ -1,15 +1,22 @@
-import type { FC } from 'react'
 import Link from 'next/link'
 import { useI18n } from 'next-rosetta'
 import cn from 'classnames'
 import type { SiteLocale } from '@shared/i18n'
 import s from './index.module.css'
+import showToast from '@shared/ui/toast/show-toast'
 
-export interface HomePageProps {}
+interface HomePageProps {}
 
-const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
+const HomePage = ({}: HomePageProps): JSX.Element => {
 	const i18n = useI18n<SiteLocale>()
 	const { t } = i18n
+
+	const handleShowToast = () => {
+		showToast({
+			message: 'Ok',
+			variant: 'success',
+		})
+	}
 
 	return (
 		<div className='container mx-auto px-8'>
@@ -20,6 +27,8 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 						<a>{t('home.hero.link')}</a>
 					</Link>
 				</h1>
+
+				<p>Next public env variable: {process.env.NEXT_PUBLIC_ENV_VARIABLE}</p>
 
 				<p className={cn(s.description, 'text-center my-16 text-2xl leading-normal')}>
 					{t('home.hero.description')}{' '}
@@ -49,10 +58,12 @@ const HomePage: FC<HomePageProps> = ({}): JSX.Element => {
 						<h2>{t('home.links.four.title')} &rarr;</h2>
 						<p>{t('home.links.four.description')}</p>
 					</a>
+					<button onClick={handleShowToast}>Show toas</button>
 				</div>
 			</main>
 		</div>
 	)
 }
 
-export default HomePage
+export { HomePage }
+export type { HomePageProps }
